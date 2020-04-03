@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_smoke"
+    android:orientation="vertical"
+    tools:context=".auth.MainActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+
+    <TextView
+        android:id="@+id/bring_date"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:padding="7dp"
+        android:text="Friday, 21, February"
+        android:textColor="@color/main"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+
+   //attendance time --------------------------------------------------
+
+    <TextView
+        android:id="@+id/Atime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/ic_timer"
+        android:drawablePadding="5dp"
+        android:padding="7dp"
+        android:text="Attendance Time"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/att_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="7dp"
+        android:background="@drawable/edittextt"
+        android:text=" at 7:33 am"
+        android:textColor="@color/dark_gray"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="#f9d7db" />
+
+      // leaving time -------------------------------------------------
+
+    <TextView
+        android:id="@+id/Ltime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/ic_timer"
+        android:drawablePadding="5dp"
+        android:padding="7dp"
+        android:text="Leaving Time"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/lev_time"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:background="@drawable/edittextt"
+        android:text=" at 3:00 pm"
+        android:textColor="@color/dark_gray"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="#f9d7db" />
+
+        //checking times-----------------------------------------------------
+        <TextView
+            android:id="@+id/check_time"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="7dp"
+            android:text="Attendance Checks"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/checktxt"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text=" 0%"
+                android:textColor="@color/dark_gray"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+        </TableRow>
+        <View
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:background="#f9d7db" />
+
+        <Button
+            android:id="@+id/gotofinger"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Add Your Fingerprint" />
+
+        <Button
+            android:id="@+id/second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Save the second check" />
+
+
+            // Attendance status
+            <Button
+                android:id="@+id/A_status"
+                android:layout_width="200dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="false"
+                android:background="@drawable/btnbtn"
+                android:text="Attendance status"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

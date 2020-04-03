@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main"
+    android:orientation="vertical"
+    tools:context=".auth.HomeActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_marginTop="50dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            //LOGO
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="45dp"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/spinnaker"
+                android:text="Auto Attendance "
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:layout_width="121dp"
+                android:layout_height="155dp"
+                android:background="@drawable/bc"
+                android:src="@drawable/ic_handup">
+
+            </ImageView>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/btnLoginCom"
+                style="@style/Base.TextAppearance.AppCompat.Body1"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/background_login"
+                android:clickable="true"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:padding="5dp"
+                android:text="Company Login"
+                android:textAllCaps="false"
+                android:textColor="#0F0E0E"
+                android:textSize="27dp"
+                android:textStyle="normal" />
+            <Button
+                android:id="@+id/btnLoginUsr"
+                style="@style/Base.TextAppearance.AppCompat.Body1"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:background="@drawable/background_login"
+                android:clickable="true"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:padding="5dp"
+                android:text="User Login"
+                android:textAllCaps="false"
+                android:textColor="#0F0E0E"
+                android:textSize="27dp"
+                android:textStyle="normal" />
+
+
+            <TextView
+                android:id="@+id/tvRegister"
+                android:layout_width="283dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:paddingTop="6dp"
+                android:text="Don't have an account ?"
+                android:textColor="@color/white"
+                android:textIsSelectable="true"
+                android:textSize="19dp" />
+
+            <Button
+                android:id="@+id/btnCompany"
+                style="@style/Base.TextAppearance.AppCompat.Body1"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background_login"
+                android:clickable="true"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:padding="5dp"
+                android:text="Company Registration"
+                android:textAllCaps="false"
+                android:textColor="#0F0E0E"
+                android:textSize="27dp"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/btnUser"
+                style="@style/Base.TextAppearance.AppCompat.Body1"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background_login"
+                android:clickable="true"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:padding="5dp"
+                android:text="User Registration"
+                android:textAllCaps="false"
+                android:textColor="#0F0E0E"
+                android:textSize="27dp"
+                android:textStyle="normal" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

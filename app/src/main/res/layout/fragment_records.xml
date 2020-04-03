@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".company.RecordsFragment"
+    android:background="@color/main"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/fbd"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/background_login"
+        android:clickable="true"
+        android:drawableStart="@drawable/ic_date"
+        android:drawablePadding="2dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:padding="10dp"
+        android:text="Find by Date"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="27dp"
+        android:textStyle="normal" />
+
+    <Button
+        android:id="@+id/fbi"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/background_login"
+        android:clickable="true"
+        android:drawableStart="@drawable/ic_user"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:padding="10dp"
+        android:text="Find by ID"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="27dp"
+        android:textStyle="normal" />
+
+</RelativeLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "668969152629",
+    "firebase_url": "https://aasystem-f460e.firebaseio.com",
+    "project_id": "aasystem-f460e",
+    "storage_bucket": "aasystem-f460e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668969152629:android:f0e4ed44b14f55acd9c83c",
+        "android_client_info": {
+          "package_name": "com.example.aasystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668969152629-4fhju6cbq9m2d99vg30lrimiujouja4n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxHO04vIBj_nQMljNqdSTvJwn0XkuarfU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668969152629-4fhju6cbq9m2d99vg30lrimiujouja4n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

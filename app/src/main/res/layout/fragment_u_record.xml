@@ -1,0 +1,131 @@
+<?xml
+    version="1.0"
+    encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main"
+    android:orientation="vertical"
+    tools:context=".auth.MainActivity">
+
+    <TextView
+        android:layout_width="282dp"
+        android:layout_height="61dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="70dp"
+        android:layout_toRightOf="@+id/card1"
+        android:fontFamily="@font/spinnaker"
+        android:paddingTop="8dp"
+        android:text="Records"
+        android:textColor="#000007"
+        android:textSize="20dp"
+        android:textStyle="normal" />
+
+
+    <TableLayout
+        android:layout_width="393dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="118dp"
+        android:background="@color/white">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow>
+                <Button
+                    android:id="@+id/btn_from"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="write the date" />
+
+
+            </TableRow>
+            <TableRow>
+                <EditText
+                    android:id="@+id/in_from"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:hint="0000/00/00" />
+
+
+
+            </TableRow>
+        </TableLayout>
+
+
+
+        <TableRow android:background="@color/gray">
+
+
+            <TextView
+                android:id="@+id/tb_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="1dp"
+                android:fontFamily="@font/spinnaker"
+                android:padding="20dp"
+                android:text="Date"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tb_att"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="1dp"
+                android:fontFamily="@font/spinnaker"
+                android:padding="20dp"
+                android:gravity="center"
+                android:text="Work Hours"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tb_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/spinnaker"
+                android:padding="20dp"
+                android:text="Check"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+
+        <ListView
+            android:id="@+id/info"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            />
+    </TableLayout>
+
+
+</LinearLayout>
