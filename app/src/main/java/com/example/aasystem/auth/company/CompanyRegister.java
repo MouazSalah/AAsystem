@@ -12,10 +12,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.aasystem.auth.user.LoginUser;
+import com.example.aasystem.user.model.UserCredential;
 import com.example.aasystem.utils.CompanyAcountInfo;
 import com.example.aasystem.company.DomainActivity;
 import com.example.aasystem.R;
 import com.example.aasystem.auth.RegisterSuccess;
+import com.example.aasystem.utils.SharedPrefMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -130,7 +133,6 @@ public class CompanyRegister extends AppCompatActivity {
 
                 }
 
-
                 else if(!( email.isEmpty() && password.isEmpty()))
                 {
 
@@ -151,11 +153,15 @@ public class CompanyRegister extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
 
-                                        if(task.isSuccessful()){
+                                        if(task.isSuccessful())
+                                        {
+                                            SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(CompanyRegister.this);
+                                            UserCredential userCredential = new UserCredential(mEmail.getText().toString(), mPassword.getText().toString(), "company");
+                                            sharedPrefMethods.saveUserData(userCredential);
+                                            startActivity(new Intent(CompanyRegister.this, RegisterSuccess.class));
 
-                                            Toast.makeText(CompanyRegister.this, "Admin Created.", Toast.LENGTH_SHORT).show();
-
-                                        } else {
+                                        }
+                                        else {
 
                                             Toast.makeText(CompanyRegister.this, "Could not register Admin.", Toast.LENGTH_SHORT).show();
 
@@ -164,12 +170,9 @@ public class CompanyRegister extends AppCompatActivity {
 
                                 });
 
-                                startActivity(new Intent(CompanyRegister.this, RegisterSuccess.class));
 
                             } else
                                 Toast.makeText(CompanyRegister.this, "Error on creating an account, please try again", Toast.LENGTH_SHORT).show();
-
-
                         }
 
                     });
@@ -178,16 +181,19 @@ public class CompanyRegister extends AppCompatActivity {
                     Toast.makeText(CompanyRegister.this, "Error occurred !", Toast.LENGTH_SHORT).show();
 
                 }
-
             }
         });
 
-
-
-
-
+        TextView textView = findViewById(R.id.login_account);
+        textView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(getApplicationContext(), LoginCompany.class);
+                startActivity(intent);
+            }
+        });
     }
-
-
 
 }

@@ -13,7 +13,7 @@
         android:layout_marginTop="5dp"
         android:background="@color/main">
 
-        //LOGO
+
 
         <TextView
             android:id="@+id/aasystem"
@@ -80,16 +80,17 @@
                 android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/edittextt"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/edittext_corners"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:padding="10dp"
                 android:drawableLeft="@drawable/ic_company"
                 android:drawablePadding="20dp"
-                android:ems="10"
                 android:hint="Enter your organization name"
                 android:inputType="text"
-                android:padding="7dp"
                 android:textColorHint="@color/gray"
-                android:textSize="16dp" />
+                />
             />
 
             <androidx.cardview.widget.CardView
@@ -117,21 +118,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:background="@android:color/transparent"
+                        android:background="@drawable/edittext_corners"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:padding="10dp"
                         android:drawableLeft="@drawable/ic_lphone"
                         android:drawablePadding="12dp"
                         android:ems="10"
                         android:hint="Phone number"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
-                        android:padding="8dp"
                         android:textColorHint="@color/gray"
                         android:textSize="16dp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/main" />
 
                     //Email
 
@@ -139,30 +137,31 @@
                         android:id="@+id/etRegEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:background="@android:color/transparent"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/edittext_corners"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:padding="10dp"
                         android:drawableLeft="@drawable/ic_email"
                         android:drawablePadding="12dp"
                         android:ems="10"
                         android:hint="Email"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
-                        android:padding="8dp"
+
                         android:textColorHint="@color/gray"
                         android:textSize="16dp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/main" />
-                    //username
 
                     <EditText
                         android:id="@+id/etUsername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:background="@android:color/transparent"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/edittext_corners"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:padding="10dp"
                         android:drawableLeft="@drawable/ic_person"
                         android:drawablePadding="12dp"
                         android:ems="10"
@@ -175,23 +174,20 @@
                         android:textColorHint="@color/gray"
                         android:textSize="16dp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/main" />
-
-                    //password
 
                     <EditText
                         android:id="@+id/etRegPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:background="@android:color/transparent"
+                        android:layout_marginTop="15dp"
                         android:drawableLeft="@drawable/ic_lock"
                         android:drawablePadding="12dp"
                         android:ems="10"
                         android:hint="Password"
+                        android:background="@drawable/edittext_corners"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:padding="10dp"
                         android:inputType="textPassword"
                         android:paddingLeft="8dp"
                         android:paddingTop="8dp"
@@ -200,16 +196,7 @@
                         android:textColorHint="@color/gray"
                         android:textSize="16dp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/main" />
 
-
-
-
-
-            //checkboxes location, notifications
 
             <CheckBox
                 android:id="@+id/checkbox_location"
@@ -249,32 +236,20 @@
 
             </androidx.cardview.widget.CardView>
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyle"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.26" />
-
-
             <Button
                 android:id="@+id/btnReg"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
+                android:padding="3dp"
                 android:background="@drawable/btnbtn"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:text="REGISTER"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView

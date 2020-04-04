@@ -17,7 +17,9 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.aasystem.R;
+import com.example.aasystem.auth.AuthActivity;
 import com.example.aasystem.auth.HomeActivity;
+import com.example.aasystem.utils.SharedPrefMethods;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -68,7 +70,9 @@ public class SettingsFragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), HomeActivity.class);
+                SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(getActivity());
+                sharedPrefMethods.deleteUserData();
+                Intent i = new Intent(getActivity(), AuthActivity.class);
                 startActivity(i);
             }
         });

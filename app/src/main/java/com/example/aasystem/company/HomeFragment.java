@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aasystem.FingerPrintModel;
@@ -37,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -48,10 +50,13 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
     private FirebaseUser muser;
     private String userid,name,attendTime,leaveTime,check;
 
+    TextView dateTextview;
+
     RecyclerView recyclerView;
 
     UsersAdapter usersAdapter;
     List<FingerPrintModel> usersList = new ArrayList<>();
+    int month;
 
     public HomeFragment()
     {
@@ -63,15 +68,24 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
     {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+
+        DateFormat formatt = new SimpleDateFormat("dd-MMMM-yyyy");
+        long de = System.currentTimeMillis();
+        final String date = formatt.format(new Date(de));
+
+
         ListView users =  v.findViewById(R.id.usr);
+        dateTextview = v.findViewById(R.id.date_textview);
+        dateTextview.setText("Accroding to: "  + date);
+
+        Calendar c = Calendar.getInstance();
+        month = c.get(Calendar.MONTH) + 1;
 
         auth = FirebaseAuth.getInstance();
         muser = auth.getCurrentUser();
         userid = muser.getUid();
 
-        DateFormat formatt = new SimpleDateFormat("yyyy/MM/dd");
-        long de = System.currentTimeMillis();
-        final String date = formatt.format(new Date(de));
+
 
         DatabaseReference myref = FirebaseDatabase.getInstance().getReference("company").child("fingerprint");
         recyclerView = (RecyclerView) v.findViewById(R.id.users_recyclerview);
@@ -87,16 +101,12 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
            {
                for (DataSnapshot snapshot : dataSnapshot.getChildren())
                {
-                   /*name = String.valueOf(snapshot.child("user_name").getValue());
-                   attendTime = String.valueOf(snapshot.child("figerPrint").child(date).child("Time").getValue());
-                   leaveTime = String.valueOf(snapshot.child("figerPrint").child(date).child("leaveTime").getValue());
-                   check = String.valueOf(snapshot.child("figerPrint").child(date).child("Check").getValue());
-                    */
-                   Log.d("attendance", "fingerprint");
-                   Log.d("attendance", String.valueOf(snapshot.child("name").getValue()));
                    FingerPrintModel userModel = snapshot.getValue(FingerPrintModel.class);
-                   usersList.add(userModel);
 
+                   if (userModel.getMonth() == month)
+                   {
+                       usersList.add(userModel);
+                   }
                }
 
                usersAdapter = new UsersAdapter(getActivity(), usersList);

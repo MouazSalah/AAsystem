@@ -1,5 +1,6 @@
 package com.example.aasystem.auth.user;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.aasystem.R;
 import com.example.aasystem.user.UserAcountInfo;
 import com.example.aasystem.user.FingerPrintActivity;
+import com.example.aasystem.user.model.UserCredential;
+import com.example.aasystem.utils.SharedPrefMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.auth.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,19 +40,21 @@ public class UserRegister extends AppCompatActivity {
     CheckBox checkbox_location ,checkbox_notify,checkbox_certify;
     String usrid;
     FirebaseUser user;// لوضع اي دي لكل يوسر
+    ProgressDialog progressDoalog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_register);
-// تعيئة حقل الفينجر برنت
+        // تعيئة حقل الفينجر برنت
         final Intent i = getIntent();
         final String figerPrint = i.getStringExtra("figerPrint");
-// تثبيت وقت التسجيل في البرنامج
+        // تثبيت وقت التسجيل في البرنامج
         Date date = new Date();
         SimpleDateFormat strdate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         final String stringdate = strdate.format(date);
-// تهيئة الداتا بيس
+        // تهيئة الداتا بيس
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("company");
 
@@ -67,129 +73,138 @@ public class UserRegister extends AppCompatActivity {
         /**go to finger page Button*/
 
         gotofinger= findViewById(R.id.gotofinger);
-        gotofinger.setOnClickListener(new View.OnClickListener() {
+        gotofinger.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent i = new Intent(UserRegister.this, FingerPrintActivity.class);
                 startActivity(i);
             }
         });
         /**Go to login page*/
         toLogin= findViewById(R.id.login_account);
-        toLogin.setOnClickListener(new View.OnClickListener() {
+        toLogin.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent i= new Intent(UserRegister.this, LoginUser.class);
                 startActivity(i);
             }
         });
 
-
-
-
         //Register btn
-        btnURegister.setOnClickListener(new View.OnClickListener() {
+        btnURegister.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 final String user_Id= userId.getText().toString().trim();
                 final String phone_Num = phoneNum.getText().toString().trim();
                 final String e_mail= email.getText().toString().trim();
                 final String user_name= userName.getText().toString().trim();
                 final String passwd = password.getText().toString().trim();
 
-
-                if(user_Id.isEmpty()){
+                if(user_Id.isEmpty())
+                {
                     userId.setError("Please enter your ID");
                     userId.requestFocus();
                 }
-                else if(phone_Num.isEmpty()){
+                else if(phone_Num.isEmpty())
+                {
                     phoneNum.setError("Please enter phone number");
                     phoneNum.requestFocus();
                 }
-                else if(e_mail.isEmpty()){
+                else if(e_mail.isEmpty())
+                {
                     email.setError("Please enter an email");
                     email.requestFocus();
                 }
-                else if(user_name.isEmpty()){
+                else if(user_name.isEmpty())
+                {
                     userName.setError("Please enter your  username");
                     userName.requestFocus();
                 }
-                else if(passwd.length() < 6){
+                else if(passwd.length() < 6)
+                {
                     password.setError("password must have more than 6 Characters");
                     password.requestFocus();
                 }
-                if (!checkbox_location.isChecked()){
+                if (!checkbox_location.isChecked())
+                {
                     Toast.makeText(UserRegister.this,"Make Select ,",Toast.LENGTH_LONG).show();
                     checkbox_location.setError("Error Must Check");
                     return ;
-
                 }
-
-                if (!checkbox_notify.isChecked()){
+                if (!checkbox_notify.isChecked())
+                {
                     checkbox_notify.setError("Error Must Check");
-
                     return ;
-
                 }
-                if (!checkbox_certify.isChecked()){
+                if (!checkbox_certify.isChecked())
+                {
                     checkbox_certify.setError("Error Must Check");
                     return ;
-
                 }
-
-
                 else if(!( phone_Num.isEmpty() && e_mail.isEmpty() && user_name.isEmpty() && user_Id.isEmpty() &&passwd.isEmpty()))
                 {
+                    progressDoalog = new ProgressDialog(UserRegister.this);
+                    progressDoalog.setMessage("Loading....");
+                    progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                    progressDoalog.show();
 
                     // adding user to firebase
-                    mFirebase.createUserWithEmailAndPassword(e_mail, passwd).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                    mFirebase.createUserWithEmailAndPassword(e_mail, passwd).addOnCompleteListener( new OnCompleteListener<AuthResult>()
+                    {
                         @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-
-                            if (task.isSuccessful()) {
-// هذه الدالة لوضع معلومات اليوسر في الداتا بيس
+                        public void onComplete(@NonNull Task<AuthResult> task)
+                        {
+                            if (task.isSuccessful())
+                            {
+                                // هذه الدالة لوضع معلومات اليوسر في الداتا بيس
                                 UserAcountInfo userAcountInfo =new UserAcountInfo(e_mail, user_Id, user_name, phone_Num,passwd,figerPrint,stringdate);
 
                                 user = mFirebase.getCurrentUser();
                                 usrid = user.getUid();
 
-                                myRef.child("Users").child(usrid).setValue(userAcountInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                myRef.child("Users").child(usrid).setValue(userAcountInfo).addOnCompleteListener(new OnCompleteListener<Void>()
+                                {
                                     @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-
-                                        if(task.isSuccessful()){
-
-                                            Toast.makeText(UserRegister.this, "User Created.", Toast.LENGTH_SHORT).show();
-
-                                        } else {
-
+                                    public void onComplete(@NonNull Task<Void> task)
+                                    {
+                                        if(task.isSuccessful())
+                                        {
+                                            SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(UserRegister.this);
+                                            UserCredential userCredential = new UserCredential(email.getText().toString(),
+                                                    password.getText().toString(),
+                                                    "user");
+                                            sharedPrefMethods.saveUserData(userCredential);
+                                            startActivity(new Intent(UserRegister.this, LoginUser.class));
+                                            progressDoalog.dismiss();
+                                        }
+                                        else
+                                        {
                                             Toast.makeText(UserRegister.this, "Could not register User.", Toast.LENGTH_SHORT).show();
-
+                                            progressDoalog.dismiss();
                                         }
                                     }
-
                                 });
-
-                                startActivity(new Intent(UserRegister.this, LoginUser.class));
-
-                            } else
+                            }
+                            else
+                            {
+                                progressDoalog.dismiss();
                                 Toast.makeText(UserRegister.this, "Error on creating an account, please try again", Toast.LENGTH_SHORT).show();
-
-
+                            }
                         }
-
                     });
                 }
-                else {
+                else
+                {
+                    progressDoalog.dismiss();
                     Toast.makeText(UserRegister.this, "Error occurred !", Toast.LENGTH_SHORT).show();
-
                 }
-
             }
         });
-
-
-
     }
-
 }

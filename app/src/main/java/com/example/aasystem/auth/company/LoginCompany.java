@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.aasystem.company.CompanyHome;
 import com.example.aasystem.auth.ForgetPassword;
 import com.example.aasystem.R;
+import com.example.aasystem.user.model.UserCredential;
+import com.example.aasystem.utils.SharedPrefMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -91,42 +93,28 @@ public class LoginCompany extends AppCompatActivity {
                            public void onComplete(@NonNull Task<AuthResult> task) {
                                if(task.isSuccessful())
                                {
-                                   Toast.makeText(LoginCompany.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                                    progressBar.setVisibility(View.VISIBLE);
+                                   SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(LoginCompany.this);
+                                   UserCredential userCredential = new UserCredential(etLogGmail.getText().toString(), etLoginPassword.getText().toString(), "company");
+                                   sharedPrefMethods.saveUserData(userCredential);
                                    startActivity(new Intent(getApplicationContext(), CompanyHome.class));
-
                                }
                                else
                                {
                                    Toast.makeText(LoginCompany.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                    progressBar.setVisibility(View.GONE);
                                }
-
                            }
                        });
-
                    }
-
-
                 }
-
                 else
                 {
                     Toast.makeText(LoginCompany.this, "Unauthorized user ! " , Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
-
                 }
-
-
-
-
             }
         });
 
-
     }
-
-
-
-
 }

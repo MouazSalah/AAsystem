@@ -45,6 +45,7 @@ public class FingerPrint extends AppCompatActivity
     String status;
 
     String checkNumber;
+    String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,6 +56,10 @@ public class FingerPrint extends AppCompatActivity
         auth = FirebaseAuth.getInstance();
         muser = auth.getCurrentUser();
         userid = muser.getUid();
+
+        DateFormat formatt = new SimpleDateFormat("yyyy/MM/dd");
+        long de = System.currentTimeMillis();
+        date = formatt.format(new Date(de));
 
         checkNumber = getIntent().getStringExtra("check");
 
@@ -118,7 +123,7 @@ public class FingerPrint extends AppCompatActivity
                         status = "late";
                     }
                      fingerPrintModel = new FingerPrintModel(
-                            userid, name, time,
+                            date, userid, name, time,
                             "doesn't leave yet",
                             "100%",
                             "50%",
@@ -133,6 +138,8 @@ public class FingerPrint extends AppCompatActivity
                             {
                                 databaseRef.child("fingerprint").child(userid + "" + keyChild).setValue(fingerPrintModel);
                                 Toast.makeText(FingerPrint.this, "Thanks", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(FingerPrint.this, UserNav.class);
+                                startActivity(i);
                             }
                         }
                     });
@@ -160,13 +167,13 @@ public class FingerPrint extends AppCompatActivity
                                 databaseRef.child("fingerprint").child(userid + "" + keyChild).child("second_check").setValue("100%");
 
                                 Toast.makeText(FingerPrint.this, "Thanks", Toast.LENGTH_SHORT).show();
+
+                                Intent i = new Intent(FingerPrint.this, UserNav.class);
+                                startActivity(i);
                             }
                         }
                     });
                 }
-
-                Intent i = new Intent(FingerPrint.this, UserNav.class);
-                startActivity(i);
             }
         });
     }

@@ -7,6 +7,13 @@
         <item name="colorAccent">@color/black</item>
     </style>
 
+    <style name="rippleWhite">
+        <item name="mrl_rippleOverlay">true</item>
+        <item name="mrl_rippleAlpha">0.4</item>
+        <item name="mrl_rippleColor">#fff</item>
+    </style>
+
+
     <style name="Title">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/TitleText</item>

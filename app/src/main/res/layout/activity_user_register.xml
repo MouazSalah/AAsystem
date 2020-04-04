@@ -1,20 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml
+    version="1.0"
+    encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="5dp"
         android:background="@color/main">
-
-        //LOGO
 
         <TextView
             android:id="@+id/aasystem"
@@ -35,12 +36,9 @@
             android:layout_height="155dp"
             android:background="@drawable/bc"
             android:layout_marginTop="5dp"
-            android:src="@drawable/ic_handup">
+            android:src="@drawable/ic_handup"/>
 
-        </ImageView>
     </RelativeLayout>
-
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -51,7 +49,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            //Organization name
             <TextView
                 android:id="@+id/orgname"
                 android:layout_width="match_parent"
@@ -80,12 +77,6 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-
-
-
-            //Employ ID
-
-
             <EditText
                 android:id="@+id/putuserid"
                 android:layout_width="match_parent"
@@ -109,7 +100,6 @@
                 android:background="@color/main" />
 
 
-            //phoneNumber
             <EditText
                 android:id="@+id/putUserPhone"
                 android:layout_width="match_parent"
@@ -131,50 +121,41 @@
                 android:layout_height="1dp"
                 android:background="@color/main" />
 
-            //Email
             <EditText
                 android:id="@+id/putUserEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@android:color/transparent"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/edittext_corners"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:padding="10dp"
                 android:drawablePadding="12dp"
                 android:ems="10"
                 android:inputType="textEmailAddress"
-                android:padding="8dp"
                 android:hint="Email"
                 android:textColorHint="@color/gray"
                 android:maxLines="1"
                 android:textSize="16dp"
                 android:drawableLeft="@drawable/ic_email" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/main" />
-            //username
+
             <EditText
                 android:id="@+id/putUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:ems="10"
+                android:background="@drawable/edittext_corners"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="12dp"
+                android:padding="10dp"
                 android:drawablePadding="12dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
                 android:textColorHint="@color/gray"
                 android:hint="Username"
                 android:textSize="16dp"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="4dp"
                 android:drawableLeft="@drawable/ic_person" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/main" />
 
-            //password
 
             <EditText
                 android:id="@+id/putRegPassword"
@@ -190,18 +171,14 @@
                 android:textColorHint="@color/gray"
                 android:hint="Password"
                 android:textSize="16dp"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="4dp"
+                android:background="@drawable/edittext_corners"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="12dp"
+                android:padding="10dp"
                 android:drawableLeft="@drawable/ic_lock" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/main" />
-
-            //fingerprint Authuntication
 
 
-            //checkboxes location, notifications
             <CheckBox
                 android:id="@+id/checkbox_location"
                 android:layout_width="wrap_content"
@@ -233,12 +210,10 @@
                 android:textSize="18dp"
                 android:textStyle="normal" />
 
-
-
             <Button
                 android:id="@+id/btnReg"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/btnbtn"
                 android:text="REGISTER"
@@ -247,9 +222,9 @@
                 android:layout_marginRight="5dp"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:textColor="@color/white"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                />
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/login_account"
                 android:layout_width="wrap_content"
@@ -260,6 +235,7 @@
                 android:textColor="@color/selector_txt"
                 android:textIsSelectable="true"
                 android:textSize="17dp" />
+
             <View
                 android:layout_width="200dp"
                 android:layout_height="1dp"
@@ -267,10 +243,8 @@
                 android:layout_marginBottom="10dp"
                 android:background="@color/main" />
 
-
         </LinearLayout>
+
     </ScrollView>
-
-
 
 </LinearLayout>

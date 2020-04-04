@@ -2,20 +2,14 @@ package com.example.aasystem.company;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.aasystem.FingerPrintModel;
 import com.example.aasystem.R;
-import com.example.aasystem.UserModel;
 import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>
@@ -26,7 +20,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>
     Context context;
 
     // data is passed into the constructor
-    UsersAdapter(Context context, List<FingerPrintModel> data)
+    public UsersAdapter(Context context, List<FingerPrintModel> data)
     {
         this.context = context;
         this.mInflater = LayoutInflater.from(context);
@@ -51,8 +45,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>
         holder.attendText.setText("" + model.getAttend());
         holder.leftText.setText("" + model.getLeave());
         holder.checkText.setText("" + model.getStatus());
+        holder.dateText.setText("" + model.getDate());
 
         holder.name.setText("Name");
+        holder.date.setText("Date");
         holder.attend.setText("Attend at");
         holder.left.setText("Leave at");
         holder.check.setText("Attendance check");
@@ -77,8 +73,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         LinearLayout userLayout;
-        TextView nameText, attendText, leftText, checkText;
-        TextView name, attend, left, check;
+        TextView nameText, attendText, leftText, checkText, dateText;
+        TextView name, attend, left, check, date;
 
         ViewHolder(View itemView)
         {
@@ -87,12 +83,15 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>
             attendText = itemView.findViewById(R.id.tv_attendance);
             leftText = itemView.findViewById(R.id.tv_left);
             checkText = itemView.findViewById(R.id.tv_check);
+            checkText = itemView.findViewById(R.id.tv_check);
+            dateText = itemView.findViewById(R.id.tv_date);
             userLayout = itemView.findViewById(R.id.user_layout);
 
             name = itemView.findViewById(R.id.name_textview);
             attend = itemView.findViewById(R.id.attend_textview);
             left = itemView.findViewById(R.id.left_textview);
             check = itemView.findViewById(R.id.check_textview);
+            date = itemView.findViewById(R.id.date_textview);
 
 
             itemView.setOnClickListener(this);

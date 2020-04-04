@@ -59,6 +59,34 @@
 
                 <TextView
                     style="@style/Title"
+                    android:id="@+id/date_textview"
+                    tools:text=" التاريخ"/>
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    style="@style/Body"
+                    android:text=" 9:52:37 PM" />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Title"
                     android:id="@+id/attend_textview"
                     tools:text="موعد الحضور"/>
 

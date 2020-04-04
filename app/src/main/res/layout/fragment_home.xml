@@ -11,96 +11,29 @@
     android:background="@color/white"
     tools:context=".company.HomeFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/users_recyclerview"
-        />
+        android:orientation="vertical">
 
-    <!--<LinearLayout
-        android:id="@+id/first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="16dp">
-
-        <ImageButton
-            android:id="@+id/fingerprintbtn"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/find_border"
-            android:src="@drawable/ic_fingerprint_black" />
-
-        <ImageButton
-            android:id="@+id/timebtn"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:background="@drawable/find_border"
-            android:src="@drawable/ic_watch" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/second"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/first"
-        android:background="@color/main"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
-
-        <Button
-            android:id="@+id/presentbtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="90dp"
-            android:background="@drawable/present_btn" />
-
-        <Button
-            android:id="@+id/latesbtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="50dp"
-            android:background="@drawable/late_btn" />
-
-        <Button
-            android:id="@+id/absentbtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="50dp"
-            android:background="@drawable/absent_btn" />
-
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/second"
-        android:layout_marginTop="10dp">
-
-        <LinearLayout
-            android:id="@+id/third"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/gray"
-            android:orientation="vertical">
+            android:layout_height="50dp"
+            android:fontFamily="@font/jf"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:id="@+id/date_textview"/>
 
-            <ListView
-                android:id="@+id/usr"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:background="@color/gray"
-                android:divider="@color/black" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/users_recyclerview"
+            />
 
-        </LinearLayout>
+    </LinearLayout>
 
-    </ScrollView>
-    -->
 
 
     <RelativeLayout

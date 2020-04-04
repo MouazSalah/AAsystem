@@ -3,6 +3,7 @@ package com.example.aasystem.auth.user;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import com.example.aasystem.R;
 import com.example.aasystem.auth.ForgetPassword;
 import com.example.aasystem.user.UserNav;
+import com.example.aasystem.user.model.UserCredential;
+import com.example.aasystem.utils.SharedPrefMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,6 +31,7 @@ public class LoginUser extends AppCompatActivity {
     TextView txForget, toReg;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
+    ProgressDialog progressDoalog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,10 @@ public class LoginUser extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDoalog = new ProgressDialog(LoginUser.this);
+                progressDoalog.setMessage("Loading....");
+                progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                progressDoalog.show();
                 final String email = etLogGmail.getText().toString().trim();
                 final String password = etLoginPassword.getText().toString().trim();
                 if(! email.toLowerCase().contains("@company"))
@@ -78,42 +86,40 @@ public class LoginUser extends AppCompatActivity {
                     }
                     else
                     {
-                        fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+                        {
                             @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
+                            public void onComplete(@NonNull Task<AuthResult> task)
+                            {
                                 if(task.isSuccessful())
                                 {
-                                    Toast.makeText(LoginUser.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                                     progressBar.setVisibility(View.VISIBLE);
+                                    SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(LoginUser.this);
+                                    UserCredential userCredential = new UserCredential(etLogGmail.getText().toString(),
+                                            etLoginPassword.getText().toString(), "user");
+                                    sharedPrefMethods.saveUserData(userCredential);
                                     startActivity(new Intent(getApplicationContext(), UserNav.class));
+                                    progressDoalog.dismiss();
 
                                 }
                                 else
                                 {
                                     Toast.makeText(LoginUser.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     progressBar.setVisibility(View.GONE);
+                                    progressDoalog.dismiss();
                                 }
-
                             }
                         });
-
                     }
-
-
                 }
-
                 else
                 {
                     Toast.makeText(LoginUser.this, "Unauthorized user ! " , Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
+                    progressDoalog.dismiss();
 
                 }
-
-
-
-
             }
         });
-
     }
 }

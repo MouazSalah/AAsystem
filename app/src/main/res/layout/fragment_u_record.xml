@@ -12,120 +12,39 @@
     android:orientation="vertical"
     tools:context=".auth.MainActivity">
 
-    <TextView
-        android:layout_width="282dp"
-        android:layout_height="61dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="70dp"
-        android:layout_toRightOf="@+id/card1"
-        android:fontFamily="@font/spinnaker"
-        android:paddingTop="8dp"
-        android:text="Records"
-        android:textColor="#000007"
-        android:textSize="20dp"
-        android:textStyle="normal" />
-
-
-    <TableLayout
-        android:layout_width="393dp"
+    <LinearLayout
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="118dp"
-        android:layout_marginBottom="118dp"
-        android:background="@color/white">
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="30dp"
+        android:inputType="text"
+        android:orientation="horizontal"
+        android:paddingStart="25dp"
+        android:paddingTop="15dp"
+        android:background="@drawable/edittext_background"
+        android:paddingEnd="25dp"
+        android:paddingBottom="15dp"
+        android:textSize="14sp">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TableRow>
-                <Button
-                    android:id="@+id/btn_from"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:text="write the date" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Choose Month"/>
 
+        <Spinner
+            android:id="@+id/month_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-            </TableRow>
-            <TableRow>
-                <EditText
-                    android:id="@+id/in_from"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:hint="0000/00/00" />
+    </LinearLayout>
 
-
-
-            </TableRow>
-        </TableLayout>
-
-
-
-        <TableRow android:background="@color/gray">
-
-
-            <TextView
-                android:id="@+id/tb_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:gravity="center"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="1dp"
-                android:fontFamily="@font/spinnaker"
-                android:padding="20dp"
-                android:text="Date"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tb_att"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="1dp"
-                android:fontFamily="@font/spinnaker"
-                android:padding="20dp"
-                android:gravity="center"
-                android:text="Work Hours"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tb_check"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="5dp"
-                android:fontFamily="@font/spinnaker"
-                android:padding="20dp"
-                android:text="Check"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </TableRow>
-
-
-        <ListView
-            android:id="@+id/info"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            />
-    </TableLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/record_recyclerview"/>
 
 
 </LinearLayout>

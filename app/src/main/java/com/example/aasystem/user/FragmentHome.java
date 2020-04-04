@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.aasystem.FingerPrintModel;
 import com.example.aasystem.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,7 +37,7 @@ public class FragmentHome extends Fragment
 {
     private FirebaseAuth auth;
     private FirebaseUser muser;
-    private String userid, from, to, onTime, attTim, leev,check;
+    private String userid, secondCheck, userStatus;
 
 
     public FragmentHome() {
@@ -65,8 +66,35 @@ public class FragmentHome extends Fragment
         muser = auth.getCurrentUser();
         userid = muser.getUid();
 
+        Calendar instance = Calendar.getInstance();
+        int month = instance.get(Calendar.MONTH) + 1;
+        int year = instance.get(Calendar.YEAR);
+        int day = instance.get(Calendar.DAY_OF_MONTH);
+        final String keyChild = year + "" + month + "" + day;
 
         final DatabaseReference firebase = FirebaseDatabase.getInstance().getReference("company");
+        firebase.child("Users").child(userid).child("fingerprint").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if (dataSnapshot.hasChild(keyChild))
+                {
+                    FingerPrintModel model = dataSnapshot.child(keyChild).getValue(FingerPrintModel.class);
+                    att_time.setText(model.getAttend());
+                    lev_time.setText(model.getLeave());
+                    userStatus = model.getStatus();
+                    secondCheck = model.getSecond_check();
+                    checktxt.setText(model.getSecond_check());
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         ValueEventListener valueEventListener = new ValueEventListener()
         {
             @Override
@@ -80,14 +108,36 @@ public class FragmentHome extends Fragment
            //  attTim = String.valueOf(dataSnapshot.child("Users").child(userid).child("figerPrint").child(date).child("Time").getValue());
             // check = String.valueOf(dataSnapshot.child("Users").child(userid).child("figerPrint").child(date).child("Check").getValue());
 
-            att_time.setText(attTim);
-            checktxt.setText(check);
+           // att_time.setText(attTim);
+           // checktxt.setText(check);
             status.setOnClickListener(new View.OnClickListener ()
             {
                 @Override
                 public void onClick(View root)
                 {
-                    Date time_att = parseDate(attTim);
+                    if (secondCheck.equals("50%"))
+                    {
+                        Dialog builder = new Dialog (getContext());
+                        builder.setContentView(R.layout.on_time);
+                        builder.create();
+                        builder.show();
+                    }
+                    else if (userStatus.equals("late"))
+                    {
+                        Dialog builder = new Dialog (getContext());
+                        builder.setContentView(R.layout.ur_late);
+                        builder.create();
+                        builder.show();
+                    }
+                    else
+                    {
+                        Dialog builder = new Dialog (getContext());
+                        builder.setContentView(R.layout.ur_absent);
+                        builder.create();
+                        builder.show();
+                    }
+
+                  /*  Date time_att = parseDate(attTim);
 
                     Date time_from = parseDate(from);
                     Date time_on = parseDate(onTime);
@@ -113,13 +163,13 @@ public class FragmentHome extends Fragment
                         builder.setContentView(R.layout.ur_absent);
                         builder.create();
                         builder.show();
-                    }
+                    }*/
                 }
             });
 
             //--------- for fingerprint button hiding
-            att_time.setText(attTim);
-            checktxt.setText(check);
+           // att_time.setText(attTim);
+           // checktxt.setText(check);
          /*   finger.setOnClickListener(new View.OnClickListener ()
             {
                 @Override
@@ -166,16 +216,13 @@ public class FragmentHome extends Fragment
             @Override
             public void onClick(View v)
             {
-                Calendar instance = Calendar.getInstance();
-                int month = instance.get(Calendar.MONTH) + 1;
-                int year = instance.get(Calendar.YEAR);
-                int day = instance.get(Calendar.DAY_OF_MONTH);
-                final String keyChild = year + "" + month + "" + day;
+
 
                 String plus = "100%";
                firebase.child("Users").child(userid).child("fingerprint").addValueEventListener(new ValueEventListener() {
                    @Override
-                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                   public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                   {
                        if (dataSnapshot.hasChild(keyChild))
                        {
                           Intent intent = new Intent(getActivity(), FingerPrint.class);

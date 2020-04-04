@@ -2,13 +2,15 @@ package com.example.aasystem;
 
 public class FingerPrintModel
 {
-    String id, name, attend, leave, first_check, second_check, status;
+    String date, id, name, attend, leave, first_check, second_check, status;
     int year, month, day;
 
     public FingerPrintModel() {
     }
 
-    public FingerPrintModel(String id, String name, String attend, String leave, String first_check, String second_check, String status, int year, int month, int day) {
+    public FingerPrintModel(String date, String id, String name, String attend, String leave,
+                            String first_check, String second_check, String status, int year, int month, int day) {
+        this.date = date;
         this.id = id;
         this.name = name;
         this.attend = attend;
@@ -99,5 +101,13 @@ public class FingerPrintModel
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
