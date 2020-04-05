@@ -74,11 +74,11 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
         Calendar c = Calendar.getInstance();
         month = c.get(Calendar.MONTH) + 1;
 
-        auth = FirebaseAuth.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        userid = user.getUid();
+        /*auth = FirebaseAuth.getInstance();
         muser = auth.getCurrentUser();
-        userid = muser.getUid();
-
-
+        userid = muser.getUid();*/
 
         DatabaseReference myref = FirebaseDatabase.getInstance().getReference("company").child("fingerprint");
         recyclerView = (RecyclerView) v.findViewById(R.id.users_recyclerview);

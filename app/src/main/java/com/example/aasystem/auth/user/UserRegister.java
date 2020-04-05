@@ -162,8 +162,6 @@ public class UserRegister extends AppCompatActivity {
                             if (task.isSuccessful())
                             {
                                 // هذه الدالة لوضع معلومات اليوسر في الداتا بيس
-
-
                                 user = mFirebase.getCurrentUser();
                                 key = user.getUid();
                                 UserAcountInfo userAcountInfo =new UserAcountInfo( key, e_mail,

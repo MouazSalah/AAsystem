@@ -28,7 +28,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run()
             {
-                SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(MainActivity.this);
+                Intent homeIntent= new Intent(MainActivity.this, AuthActivity.class);
+                startActivity(homeIntent);
+                finish();
+               /* SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(MainActivity.this);
                 UserCredential userCredential = sharedPrefMethods.getUserData();
 
                 Intent homeIntent;
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity
                     homeIntent= new Intent(MainActivity.this, AuthActivity.class);
                     startActivity(homeIntent);
                     finish();
-                }
+                }*/
             }
         },SPLASH_TIME_OUT);
     }

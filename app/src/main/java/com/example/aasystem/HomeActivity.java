@@ -1,4 +1,4 @@
-package com.example.aasystem.auth;
+package com.example.aasystem;
 
 import android.app.AlarmManager;
 
@@ -9,12 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.aasystem.R;
 import com.example.aasystem.auth.company.CompanyRegister;
-import com.example.aasystem.auth.company.LoginCompany;
+import com.example.aasystem.auth.loginSucess;
 import com.example.aasystem.auth.user.LoginUser;
 import com.example.aasystem.auth.user.UserRegister;
-import com.example.aasystem.utils.notification;
 
 import java.util.Calendar;
 
@@ -34,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
         btnLoginCom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent logc= new Intent(HomeActivity.this, LoginCompany.class);
+                Intent logc= new Intent(HomeActivity.this, loginSucess.loginActivity.class);
                 startActivity(logc);
             }
         });
@@ -81,9 +79,5 @@ public class HomeActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-
-
     }
-
-
 }

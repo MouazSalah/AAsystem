@@ -84,12 +84,12 @@ public class CompanyRegister extends AppCompatActivity {
             }
         });
 
-
-
         //Register btn
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 final String email = mEmail.getText().toString().trim();
                 final String password = mPassword.getText().toString().trim();
                 final String CompanyName = mCompanyName.getText().toString().trim();
@@ -100,68 +100,61 @@ public class CompanyRegister extends AppCompatActivity {
                 final String OnTime = "15:30";
 
 
-                if(email.isEmpty()){
+                if (email.isEmpty()) {
                     mEmail.setError("Email is Required.");
                     mEmail.requestFocus();
-                }
-
-                else if(password.length() < 6){
+                } else if (password.length() < 6) {
                     mPassword.setError("Password Must be at least Characters");
                     mPassword.requestFocus();
-                }
-                else if(! email.contains("@company")){
-                    mPassword.setError("Email must end with @company.sa");
-                    mPassword.requestFocus();
+                } else if (!email.contains("@company")) {
+                    mEmail.setError("Email must end with @company.sa");
+                    mEmail.requestFocus();
 
                 }
-                if (!checkbox_location.isChecked()){
-                    Toast.makeText(CompanyRegister.this,"Make Select ,",Toast.LENGTH_LONG).show();
+                else if (!checkbox_location.isChecked()) {
+                    Toast.makeText(CompanyRegister.this, "Make Select ,", Toast.LENGTH_LONG).show();
                     checkbox_location.setError("Error Must Check");
-                    return ;
+                    return;
 
                 }
 
-                if (!checkbox_notify.isChecked()){
+                else if (!checkbox_notify.isChecked()) {
                     checkbox_notify.setError("Error Must Check");
 
-                    return ;
+                    return;
 
                 }
-                if (!checkbox_certify.isChecked()){
+                else if (!checkbox_certify.isChecked()) {
                     checkbox_certify.setError("Error Must Check");
-                    return ;
+                    return;
 
-                }
-
-                else if(!( email.isEmpty() && password.isEmpty()))
-                {
+                } else if (!(email.isEmpty() && password.isEmpty())) {
 
                     // adding user to firebase
-                    mFirebase.createUserWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                    mFirebase.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (task.isSuccessful()) {
-                              // Store user information in the database
-                                CompanyAcountInfo companyAcountInfo = new CompanyAcountInfo(email,password,CompanyName,Phone,Username,lat,lon,From,To,OnTime);
+                                // Store user information in the database
+                                CompanyAcountInfo companyAcountInfo = new CompanyAcountInfo(email, password, CompanyName, Phone, Username, lat, lon, From, To, OnTime);
 
                                 user = mFirebase.getCurrentUser();
                                 usrid = user.getUid();
 
-
-                                myRef.child(usrid).setValue(companyAcountInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                myRef.child(usrid).setValue(companyAcountInfo).addOnCompleteListener(new OnCompleteListener<Void>()
+                                {
                                     @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-
-                                        if(task.isSuccessful())
+                                    public void onComplete(@NonNull Task<Void> task)
+                                    {
+                                        if (task.isSuccessful())
                                         {
                                             SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(CompanyRegister.this);
                                             UserCredential userCredential = new UserCredential(mEmail.getText().toString(), mPassword.getText().toString(), "company");
                                             sharedPrefMethods.saveUserData(userCredential);
                                             startActivity(new Intent(CompanyRegister.this, RegisterSuccess.class));
 
-                                        }
-                                        else {
+                                        } else {
 
                                             Toast.makeText(CompanyRegister.this, "Could not register Admin.", Toast.LENGTH_SHORT).show();
 
@@ -176,8 +169,7 @@ public class CompanyRegister extends AppCompatActivity {
                         }
 
                     });
-                }
-                else {
+                } else {
                     Toast.makeText(CompanyRegister.this, "Error occurred !", Toast.LENGTH_SHORT).show();
 
                 }

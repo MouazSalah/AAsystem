@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.aasystem.R;
-import com.example.aasystem.utils.notification;
+import com.example.aasystem.notyLeave;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -65,7 +65,7 @@ public class LeavTime extends AppCompatActivity {
         out.set(Calendar.HOUR_OF_DAY,21);
         out.set(Calendar.MINUTE,0);
 
-        Intent i = new Intent(LeavTime.this, notification.class);
+        Intent i = new Intent(LeavTime.this, notyLeave.class);
         PendingIntent pi = PendingIntent.getBroadcast(this,0,i,0);
         AlarmManager alM = (AlarmManager) getSystemService(ALARM_SERVICE);
         alM.setRepeating(AlarmManager.RTC_WAKEUP,out.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pi);

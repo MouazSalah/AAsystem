@@ -1,6 +1,7 @@
 package com.example.aasystem.company;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -72,7 +73,7 @@ public class PendingUsersActivity extends AppCompatActivity implements PendingAd
                     name = snapshot.child("user_name").getValue(String.class);
                     email = snapshot.child("e_mail").getValue(String.class);
                     password = snapshot.child("passwd").getValue(String.class);
-                    key = snapshot.child("user_Id").getValue(String.class);
+                    key = snapshot.child("key").getValue(String.class);
                     PendingUserModel pendingUserModel = new PendingUserModel(key, name , email, password);
                     pendingList.add(pendingUserModel);
 
@@ -115,43 +116,39 @@ public class PendingUsersActivity extends AppCompatActivity implements PendingAd
                 {
                     public void onClick(DialogInterface dialog, int which)
                     {
-                        Toast.makeText(PendingUsersActivity.this, "deleted" + currentModel.getEmail(), Toast.LENGTH_SHORT).show();
-                        deleteUser();
+                        DatabaseReference myref = FirebaseDatabase.getInstance().getReference("company").child("Users");
+                        myref.child(key).removeValue();
+                        pendingAdapter.notifyDataSetChanged();
+                        Intent intent = new Intent(PendingUsersActivity.this, PendingUsersActivity.class );
+                        startActivity(intent);
+                        finish();
                     }
                 })
-                // A null listener allows the button to dismiss the dialog and take no further action.
-                .setNegativeButton(android.R.string.no, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+            .setNegativeButton(android.R.string.no, null)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .show();
     }
 
-    private void deleteUser()
+    private void deleteUserData()
     {
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         AuthCredential credential = EmailAuthProvider.getCredential(currentModel.getEmail(), currentModel.getPassword());
 
         user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<Void> task)
             {
-                @Override
-                public void onComplete(@NonNull Task<Void> task)
-                {
-            user.delete().addOnCompleteListener(new OnCompleteListener<Void>()
-            {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task)
-                        {
-                            if (task.isSuccessful())
-                            {
-                                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("company").child("Users");
-                                myref.child(key).removeValue();
-                                Toast.makeText(PendingUsersActivity.this, "deleted", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
-                }
-            });
+               if (task.isSuccessful())
+               {
+                   DatabaseReference myref = FirebaseDatabase.getInstance().getReference("company").child("Users");
+                   myref.child(key).removeValue();
+                   pendingAdapter.notifyDataSetChanged();
+                   Intent intent = new Intent(PendingUsersActivity.this, PendingUsersActivity.class );
+                   startActivity(intent);
+               }
+            }
+        });
     }
-
 }

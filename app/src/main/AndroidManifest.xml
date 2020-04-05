@@ -44,7 +44,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.HomeActivity" />
         <activity android:name=".auth.company.CompanyRegister" />
         <activity android:name=".company.DomainActivity" />
         <activity android:name=".auth.RegisterSuccess" />

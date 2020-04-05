@@ -16,8 +16,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.aasystem.R;
 import com.example.aasystem.auth.AuthActivity;
-import com.example.aasystem.auth.HomeActivity;
-import com.example.aasystem.auth.user.LoginUser;
 import com.example.aasystem.utils.SharedPrefMethods;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
