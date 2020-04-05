@@ -55,7 +55,7 @@
         <activity android:name=".company.FindById" />
         <activity android:name=".auth.ForgetPassword" />
         <activity android:name=".auth.user.UserRegister" />
-        <activity android:name=".PendingUsers" />
+        <activity android:name=".company.PendingUsersActivity" />
         <activity android:name=".user.FingerPrintActivity" />
         <activity android:name=".user.FingerPrint" />
         <activity android:name=".user.UserNav" />

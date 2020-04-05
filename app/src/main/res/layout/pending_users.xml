@@ -2,7 +2,7 @@
     version="1.0"
     encoding="utf-8"?>
 
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,13 +11,13 @@
 
     <TextView
         android:id="@+id/pendUsrs"
-        android:layout_width="408dp"
-        android:layout_height="62dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="15dp"
         android:fontFamily="@font/spinnaker"
         android:paddingTop="8dp"
-        android:text="Pending Users"
+        android:gravity="center"
+        android:text="All Users"
         android:textColor="#000007"
         android:textSize="25dp"
         android:textStyle="bold" />
@@ -26,36 +26,16 @@
         android:id="@+id/usrsrequest"
         android:layout_below="@+id/pendUsrs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="8dp"
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <ListView
-                android:id="@+id/usr"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:background="@color/gray"
-                android:divider="@color/black" />
-
-            <Button
-                android:id="@+id/btnSaveusr"
-                android:layout_width="197dp"
-                android:layout_height="53dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="529dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/btnbtn"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="Save"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/pendingusers_recyclerview"
+            />
 
     </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>

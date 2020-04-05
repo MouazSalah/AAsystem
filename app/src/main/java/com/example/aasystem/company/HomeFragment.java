@@ -5,17 +5,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -23,12 +20,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aasystem.FingerPrintModel;
-import com.example.aasystem.PendingUsers;
 import com.example.aasystem.R;
-import com.example.aasystem.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -74,7 +68,6 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
         final String date = formatt.format(new Date(de));
 
 
-        ListView users =  v.findViewById(R.id.usr);
         dateTextview = v.findViewById(R.id.date_textview);
         dateTextview.setText("Accroding to: "  + date);
 
@@ -108,7 +101,6 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
                        usersList.add(userModel);
                    }
                }
-
                usersAdapter = new UsersAdapter(getActivity(), usersList);
                recyclerView.setAdapter(usersAdapter);
                usersAdapter.notifyDataSetChanged();
@@ -165,7 +157,7 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
             @Override
             public void onClick(View v)
             {
-                Intent i = new Intent(getActivity(), PendingUsers.class);
+                Intent i = new Intent(getActivity(), PendingUsersActivity.class);
                 startActivity(i);
             }
         });

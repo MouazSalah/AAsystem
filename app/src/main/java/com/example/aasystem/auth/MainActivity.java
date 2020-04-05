@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.example.aasystem.R;
 import com.example.aasystem.auth.user.LoginUser;
@@ -29,18 +30,25 @@ public class MainActivity extends AppCompatActivity
             {
                 SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(MainActivity.this);
                 UserCredential userCredential = sharedPrefMethods.getUserData();
+
                 Intent homeIntent;
-                if (userCredential != null)
+                if (sharedPrefMethods.getUserData() != null)
                 {
-                    if (userCredential.getType().equals("company"))
+                    if ("company".equals(userCredential.getType()))
                     {
                         homeIntent= new Intent(MainActivity.this, CompanyHome.class);
                         startActivity(homeIntent);
                         finish();
                     }
-                    if (userCredential.getType().equals("user"))
+                    else if ("user".equals(userCredential.getType()))
                     {
                         homeIntent= new Intent(MainActivity.this, UserNav.class);
+                        startActivity(homeIntent);
+                        finish();
+                    }
+                    else
+                    {
+                        homeIntent= new Intent(MainActivity.this, AuthActivity.class);
                         startActivity(homeIntent);
                         finish();
                     }

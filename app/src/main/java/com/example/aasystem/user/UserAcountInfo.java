@@ -1,16 +1,17 @@
 package com.example.aasystem.user;
 
-public class UserAcountInfo {
+public class UserAcountInfo
+{
 // هذه الدالة لوضع معلومات اليوسر في الداتا بيس
     public UserAcountInfo()
     {
 
     }
 
-    public String e_mail, user_Id, user_name, phone_Num,passwd,figerPrint,stringdate;
+    public String  key, e_mail, user_Id, user_name, phone_Num,passwd,figerPrint,stringdate;
 
-    public UserAcountInfo(String e_mail,String user_Id,String user_name,String phone_Num,String passwd ,String figerPrint,String stringdate)
-    {
+    public UserAcountInfo(String key, String e_mail, String user_Id, String user_name, String phone_Num, String passwd, String figerPrint, String stringdate) {
+        this.key = key;
         this.e_mail = e_mail;
         this.user_Id = user_Id;
         this.user_name = user_name;
@@ -18,7 +19,38 @@ public class UserAcountInfo {
         this.passwd = passwd;
         this.figerPrint = figerPrint;
         this.stringdate = stringdate;
+    }
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
+    public String getFigerPrint() {
+        return figerPrint;
+    }
+
+    public void setFigerPrint(String figerPrint) {
+        this.figerPrint = figerPrint;
+    }
+
+    public String getStringdate() {
+        return stringdate;
+    }
+
+    public void setStringdate(String stringdate) {
+        this.stringdate = stringdate;
     }
 
     public String getPhone_Num() {

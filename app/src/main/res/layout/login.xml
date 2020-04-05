@@ -9,13 +9,41 @@
     android:orientation="vertical"
     tools:context=".auth.MainActivity">
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:background="@color/main">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bc"
+            android:src="@drawable/ic_handup"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/spinnaker"
+            android:text="Company Login"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="20sp"
+            />
+
+    </LinearLayout>
+
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="5dp"
         android:background="@color/main">
 
-        //LOGO
 
         <TextView
             android:id="@+id/aasystem"
@@ -24,6 +52,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="45dp"
             android:drawablePadding="10dp"
+
             android:fontFamily="@font/spinnaker"
             android:text="Company Login"
             android:textColor="@color/white"
@@ -37,11 +66,11 @@
             android:src="@drawable/ic_handup">
 
         </ImageView>
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="507dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,33 +78,43 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:background="@drawable/bc"
+                android:src="@drawable/ic_handup"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center_horizontal"/>
+
 
             <EditText
                 android:id="@+id/etLogGmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:background="@android:color/transparent"
                 android:drawableLeft="@drawable/ic_email"
                 android:drawablePadding="12dp"
                 android:ems="10"
                 android:hint="Email"
+                android:background="@drawable/edittext_corners"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:padding="10dp"
                 android:inputType="textEmailAddress"
                 android:maxLines="10"
-                android:padding="8dp"
                 android:textColorHint="@color/gray" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/main" />
+
 
             <EditText
                 android:id="@+id/etLoginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:background="@android:color/transparent"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_corners"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:padding="10dp"
                 android:drawableLeft="@drawable/ic_lock"
                 android:drawablePadding="12dp"
                 android:ems="10"
@@ -88,16 +127,13 @@
                 android:paddingBottom="8dp"
                 android:textColorHint="@color/gray" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/main" />
 
             <TextView
                 android:id="@+id/tvRegister"
                 android:layout_width="283dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
@@ -106,18 +142,6 @@
                 android:textColor="@color/black"
                 android:textIsSelectable="true"
                 android:textSize="18dp" />
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyle"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.26" />
 
 
             <Button

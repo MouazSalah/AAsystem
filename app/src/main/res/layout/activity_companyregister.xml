@@ -1,27 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml
+    version="1.0"
+    encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
-   >
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:background="@color/main">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bc"
+            android:src="@drawable/ic_handup"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/spinnaker"
+            android:text="Create Company Account"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="20sp"
+            />
+
+    </LinearLayout>
+
+<!--    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="5dp"
         android:background="@color/main">
 
 
-
         <TextView
             android:id="@+id/aasystem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="45dp"
+            android:layout_marginRight="20dp"
             android:drawablePadding="10dp"
             android:fontFamily="@font/spinnaker"
             android:text="Create Company Account"
@@ -32,15 +63,12 @@
             android:id="@+id/icon"
             android:layout_width="121dp"
             android:layout_height="155dp"
-            android:background="@drawable/bc"
             android:layout_marginTop="5dp"
+            android:background="@drawable/bc"
             android:src="@drawable/ic_handup">
 
         </ImageView>
-    </RelativeLayout>
-
-
-
+    </RelativeLayout>-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -50,10 +78,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-
-
-            //Specify Domain
 
 
             <Button
@@ -72,26 +96,24 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="normal" />
-            //Organization name
 
             <EditText
                 android:id="@+id/etOrgname"
-                android:saveEnabled="true"
-                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/edittext_corners"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
-                android:padding="10dp"
+                android:background="@drawable/edittext_corners"
                 android:drawableLeft="@drawable/ic_company"
                 android:drawablePadding="20dp"
                 android:hint="Enter your organization name"
                 android:inputType="text"
+                android:padding="10dp"
+                android:saveEnabled="true"
                 android:textColorHint="@color/gray"
-                />
-            />
+                android:visibility="visible" />
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card1"
@@ -107,48 +129,41 @@
                     android:layout_margin="10dp"
                     android:orientation="vertical">
 
-
-
-
-                    //PhoneNumber
-
                     <EditText
                         android:id="@+id/etRegPhone"
-                        android:focusableInTouchMode="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/edittext_corners"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginRight="20dp"
-                        android:padding="10dp"
+                        android:background="@drawable/edittext_corners"
                         android:drawableLeft="@drawable/ic_lphone"
                         android:drawablePadding="12dp"
                         android:ems="10"
+                        android:focusableInTouchMode="true"
                         android:hint="Phone number"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
+                        android:padding="10dp"
                         android:textColorHint="@color/gray"
                         android:textSize="16dp" />
 
-                    //Email
 
                     <EditText
                         android:id="@+id/etRegEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:background="@drawable/edittext_corners"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="20dp"
-                        android:padding="10dp"
+                        android:background="@drawable/edittext_corners"
                         android:drawableLeft="@drawable/ic_email"
                         android:drawablePadding="12dp"
                         android:ems="10"
                         android:hint="Email"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
-
+                        android:padding="10dp"
                         android:textColorHint="@color/gray"
                         android:textSize="16dp" />
 
@@ -157,16 +172,16 @@
                         android:id="@+id/etUsername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:background="@drawable/edittext_corners"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="20dp"
-                        android:padding="10dp"
+                        android:background="@drawable/edittext_corners"
                         android:drawableLeft="@drawable/ic_person"
                         android:drawablePadding="12dp"
                         android:ems="10"
                         android:hint="Username"
                         android:inputType="text"
+                        android:padding="10dp"
                         android:paddingLeft="8dp"
                         android:paddingTop="8dp"
                         android:paddingRight="8dp"
@@ -179,16 +194,16 @@
                         android:id="@+id/etRegPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="15dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/edittext_corners"
                         android:drawableLeft="@drawable/ic_lock"
                         android:drawablePadding="12dp"
                         android:ems="10"
                         android:hint="Password"
-                        android:background="@drawable/edittext_corners"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:padding="10dp"
                         android:inputType="textPassword"
+                        android:padding="10dp"
                         android:paddingLeft="8dp"
                         android:paddingTop="8dp"
                         android:paddingRight="8dp"
@@ -197,39 +212,37 @@
                         android:textSize="16dp" />
 
 
+                    <CheckBox
+                        android:id="@+id/checkbox_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="Allow Location Access"
+                        android:textColor="#000007"
+                        android:textSize="18dp"
+                        android:textStyle="normal" />
 
-            <CheckBox
-                android:id="@+id/checkbox_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="Allow Location Access"
-                android:textColor="#000007"
-                android:textSize="18dp"
-                android:textStyle="normal" />
-
-            <CheckBox
-                android:id="@+id/checkbox_notify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="Allow Notifications"
-                android:textColor="#000007"
-                android:textSize="18dp"
-                android:textStyle="normal" />
+                    <CheckBox
+                        android:id="@+id/checkbox_notify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="Allow Notifications"
+                        android:textColor="#000007"
+                        android:textSize="18dp"
+                        android:textStyle="normal" />
 
 
-            <CheckBox
-                android:id="@+id/checkbox_certify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="I certify all this information is correct"
-                android:textColor="#000007"
-                android:textSize="18dp"
-                android:textStyle="normal" />
-
+                    <CheckBox
+                        android:id="@+id/checkbox_certify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="I certify all this information is correct"
+                        android:textColor="#000007"
+                        android:textSize="18dp"
+                        android:textStyle="normal" />
 
                 </LinearLayout>
 
@@ -243,9 +256,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
-                android:padding="3dp"
                 android:background="@drawable/btnbtn"
                 android:fontFamily="sans-serif-condensed-medium"
+                android:padding="3dp"
                 android:text="REGISTER"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -270,9 +283,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@color/main" />
 
-
         </LinearLayout>
     </ScrollView>
-
 
 </LinearLayout>

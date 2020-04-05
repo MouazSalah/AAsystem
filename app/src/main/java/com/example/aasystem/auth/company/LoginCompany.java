@@ -35,7 +35,6 @@ public class LoginCompany extends AppCompatActivity {
     DatabaseReference myRef;
     FirebaseDatabase mFirebaseDatabase;
     String usrid;
-    ProgressBar progressBar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +44,6 @@ public class LoginCompany extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         myRef=FirebaseDatabase.getInstance().getReference("company");
 
-        progressBar = findViewById(R.id.progressBar);
 
 
         //Declaring variables
@@ -93,7 +91,6 @@ public class LoginCompany extends AppCompatActivity {
                            public void onComplete(@NonNull Task<AuthResult> task) {
                                if(task.isSuccessful())
                                {
-                                   progressBar.setVisibility(View.VISIBLE);
                                    SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(LoginCompany.this);
                                    UserCredential userCredential = new UserCredential(etLogGmail.getText().toString(), etLoginPassword.getText().toString(), "company");
                                    sharedPrefMethods.saveUserData(userCredential);
@@ -102,7 +99,6 @@ public class LoginCompany extends AppCompatActivity {
                                else
                                {
                                    Toast.makeText(LoginCompany.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                   progressBar.setVisibility(View.GONE);
                                }
                            }
                        });
@@ -111,7 +107,6 @@ public class LoginCompany extends AppCompatActivity {
                 else
                 {
                     Toast.makeText(LoginCompany.this, "Unauthorized user ! " , Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
                 }
             }
         });

@@ -30,7 +30,6 @@ public class LoginUser extends AppCompatActivity {
     Button btnLogin;
     TextView txForget, toReg;
     FirebaseAuth fAuth;
-    ProgressBar progressBar;
     ProgressDialog progressDoalog;
 
     @Override
@@ -40,8 +39,6 @@ public class LoginUser extends AppCompatActivity {
 
         //Instantiate firebase
         fAuth = FirebaseAuth.getInstance();
-        progressBar = findViewById(R.id.progressBar);
-
 
         //Declaring variables
         etLogGmail = findViewById(R.id.etLogGmail);
@@ -93,7 +90,6 @@ public class LoginUser extends AppCompatActivity {
                             {
                                 if(task.isSuccessful())
                                 {
-                                    progressBar.setVisibility(View.VISIBLE);
                                     SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(LoginUser.this);
                                     UserCredential userCredential = new UserCredential(etLogGmail.getText().toString(),
                                             etLoginPassword.getText().toString(), "user");
@@ -105,7 +101,6 @@ public class LoginUser extends AppCompatActivity {
                                 else
                                 {
                                     Toast.makeText(LoginUser.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                    progressBar.setVisibility(View.GONE);
                                     progressDoalog.dismiss();
                                 }
                             }
@@ -115,7 +110,6 @@ public class LoginUser extends AppCompatActivity {
                 else
                 {
                     Toast.makeText(LoginUser.this, "Unauthorized user ! " , Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
                     progressDoalog.dismiss();
 
                 }

@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.aasystem.R;
 import com.example.aasystem.user.UserAcountInfo;
 import com.example.aasystem.user.FingerPrintActivity;
+import com.example.aasystem.user.UserNav;
 import com.example.aasystem.user.model.UserCredential;
 import com.example.aasystem.utils.SharedPrefMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,7 +39,7 @@ public class UserRegister extends AppCompatActivity {
     Button  btnURegister, gotofinger ;
     FirebaseAuth mFirebase;
     CheckBox checkbox_location ,checkbox_notify,checkbox_certify;
-    String usrid;
+    String key;
     FirebaseUser user;// لوضع اي دي لكل يوسر
     ProgressDialog progressDoalog;
 
@@ -109,27 +110,25 @@ public class UserRegister extends AppCompatActivity {
                 if(user_Id.isEmpty())
                 {
                     userId.setError("Please enter your ID");
-                    userId.requestFocus();
+                    return ;
+                    //userId.requestFocus();
                 }
                 else if(phone_Num.isEmpty())
                 {
                     phoneNum.setError("Please enter phone number");
-                    phoneNum.requestFocus();
-                }
+                    return ;                }
                 else if(e_mail.isEmpty())
                 {
                     email.setError("Please enter an email");
-                    email.requestFocus();
-                }
+                    return ;                }
                 else if(user_name.isEmpty())
                 {
                     userName.setError("Please enter your  username");
-                    userName.requestFocus();
-                }
+                    return ;                }
                 else if(passwd.length() < 6)
                 {
                     password.setError("password must have more than 6 Characters");
-                    password.requestFocus();
+                    return ;
                 }
                 if (!checkbox_location.isChecked())
                 {
@@ -163,24 +162,28 @@ public class UserRegister extends AppCompatActivity {
                             if (task.isSuccessful())
                             {
                                 // هذه الدالة لوضع معلومات اليوسر في الداتا بيس
-                                UserAcountInfo userAcountInfo =new UserAcountInfo(e_mail, user_Id, user_name, phone_Num,passwd,figerPrint,stringdate);
+
 
                                 user = mFirebase.getCurrentUser();
-                                usrid = user.getUid();
+                                key = user.getUid();
+                                UserAcountInfo userAcountInfo =new UserAcountInfo( key, e_mail,
+                                                                        user_Id, user_name, phone_Num,
+                                                                        passwd,figerPrint,stringdate);
 
-                                myRef.child("Users").child(usrid).setValue(userAcountInfo).addOnCompleteListener(new OnCompleteListener<Void>()
+                                myRef.child("Users").child(key).setValue(userAcountInfo).addOnCompleteListener(new OnCompleteListener<Void>()
                                 {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task)
                                     {
                                         if(task.isSuccessful())
                                         {
+
                                             SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(UserRegister.this);
                                             UserCredential userCredential = new UserCredential(email.getText().toString(),
                                                     password.getText().toString(),
                                                     "user");
                                             sharedPrefMethods.saveUserData(userCredential);
-                                            startActivity(new Intent(UserRegister.this, LoginUser.class));
+                                            startActivity(new Intent(UserRegister.this, UserNav.class));
                                             progressDoalog.dismiss();
                                         }
                                         else
