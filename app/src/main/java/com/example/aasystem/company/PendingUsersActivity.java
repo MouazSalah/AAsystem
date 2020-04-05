@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.aasystem.HomeActivity;
 import com.example.aasystem.R;
 import com.example.aasystem.company.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -147,8 +148,17 @@ public class PendingUsersActivity extends AppCompatActivity implements PendingAd
                    pendingAdapter.notifyDataSetChanged();
                    Intent intent = new Intent(PendingUsersActivity.this, PendingUsersActivity.class );
                    startActivity(intent);
+                   finish();
                }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(PendingUsersActivity.this, HomeFragment.class );
+        startActivity(intent);
+        finish();
     }
 }
