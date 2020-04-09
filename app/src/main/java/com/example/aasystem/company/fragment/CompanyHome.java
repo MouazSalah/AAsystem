@@ -1,4 +1,4 @@
-package com.example.aasystem.company;
+package com.example.aasystem.company.fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -7,12 +7,12 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.aasystem.R;
-import com.example.aasystem.utils.MovementManager;
+import com.example.aasystem.company.fragment.HomeFragment;
+import com.example.aasystem.company.fragment.RecordsFragment;
+import com.example.aasystem.company.fragment.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CompanyHome extends AppCompatActivity

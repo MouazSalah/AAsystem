@@ -1,5 +1,4 @@
-package com.example.aasystem.company;
-
+package com.example.aasystem.company.fragment;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -10,17 +9,19 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aasystem.FingerPrintModel;
 import com.example.aasystem.R;
+import com.example.aasystem.company.activities.PendingUsersActivity;
+import com.example.aasystem.company.adapter.UsersAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -50,7 +51,7 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
 
     UsersAdapter usersAdapter;
     List<FingerPrintModel> usersList = new ArrayList<>();
-    int month;
+    int day;
 
     public HomeFragment()
     {
@@ -72,7 +73,9 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
         dateTextview.setText("Accroding to: "  + date);
 
         Calendar c = Calendar.getInstance();
-        month = c.get(Calendar.MONTH) + 1;
+        day = c.get(Calendar.DAY_OF_MONTH) ;
+        Log.d("currentMonth", day + "");
+
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userid = user.getUid();
@@ -96,7 +99,9 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
                {
                    FingerPrintModel userModel = snapshot.getValue(FingerPrintModel.class);
 
-                   if (userModel.getMonth() == month)
+                   Log.d("currentMonth", userModel.getMonth() + "");
+
+                   if (userModel.getDay() == day)
                    {
                        usersList.add(userModel);
                    }
@@ -111,7 +116,6 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
 
            }
        });
-
 
    /*     myref.addChildEventListener(new ChildEventListener()
         {

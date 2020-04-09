@@ -13,7 +13,7 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
 import com.example.aasystem.R;
-import com.example.aasystem.company.MapsActivity;
+import com.example.aasystem.company.activities.MapsActivity;
 
 public class notification extends BroadcastReceiver {
 

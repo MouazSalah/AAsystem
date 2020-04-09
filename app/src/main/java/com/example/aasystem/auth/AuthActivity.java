@@ -30,6 +30,7 @@ public class AuthActivity extends AppCompatActivity
             {
                 Intent intent = new Intent(getApplicationContext(), LoginUser.class);
                 startActivity(intent);
+                finish();
             }
         });
         company.setOnClickListener(new View.OnClickListener()
@@ -39,6 +40,7 @@ public class AuthActivity extends AppCompatActivity
             {
                 Intent intent = new Intent(getApplicationContext(), LoginCompany.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

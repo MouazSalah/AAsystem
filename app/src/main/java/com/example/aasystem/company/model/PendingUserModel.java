@@ -1,4 +1,4 @@
-package com.example.aasystem.company;
+package com.example.aasystem.company.model;
 
 public class PendingUserModel
 {

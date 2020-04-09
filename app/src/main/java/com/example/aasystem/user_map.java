@@ -4,8 +4,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
-import com.example.aasystem.user.UserNav;
-import com.example.aasystem.user.FingerPrint;
+import com.example.aasystem.user.fragment.UserNav;
+import com.example.aasystem.user.activities.FingerPrintActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -142,7 +142,7 @@ public class user_map extends FragmentActivity implements OnMapReadyCallback, Lo
             Location.distanceBetween(myLat, myLon, 24.472209, 39.568258, distance); // Compare between company and user location
 
             if (distance[0] >150) { // If user location in less than the specified circle , ask for fingerprint
-                Intent intent= new Intent(getApplicationContext(), FingerPrint.class); //ask for fingerprint
+                Intent intent= new Intent(getApplicationContext(), FingerPrintActivity.class); //ask for fingerprint
                 startActivity(intent);
             }
             if (distance[0] <150) { // If user location in less than the specified circle , ask for fingerprint

@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".user.FragmentSettings">
+    tools:context=".user.fragment.FragmentSettings">
 
     <RelativeLayout
         android:id="@+id/settings1"

@@ -1,4 +1,4 @@
-package com.example.aasystem.user;
+package com.example.aasystem.user.fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.aasystem.FingerPrintModel;
 import com.example.aasystem.R;
+import com.example.aasystem.user.activities.FingerPrintActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +31,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.TimeZone;
 
 
 public class FragmentHome extends Fragment
@@ -225,16 +225,18 @@ public class FragmentHome extends Fragment
                    {
                        if (dataSnapshot.hasChild(keyChild))
                        {
-                          Intent intent = new Intent(getActivity(), FingerPrint.class);
+                          Intent intent = new Intent(getActivity(), FingerPrintActivity.class);
                           intent.putExtra("check", "second");
                           startActivity(intent);
+                           getActivity().finish();
                        }
                        else
                        {
                            Toast.makeText(getActivity(), "You didn't first check", Toast.LENGTH_SHORT).show();
-                           Intent intent = new Intent(getActivity(), FingerPrint.class);
+                           Intent intent = new Intent(getActivity(), FingerPrintActivity.class);
                            intent.putExtra("check", "first");
                            startActivity(intent);
+                           getActivity().finish();
                        }
                    }
 
@@ -255,9 +257,10 @@ public class FragmentHome extends Fragment
         {
             public void onClick(View root)
             {
-                Intent intent = new Intent(getActivity(), FingerPrint.class);
+                Intent intent = new Intent(getActivity(), FingerPrintActivity.class);
                 intent.putExtra("check", "first");
                 startActivity(intent);
+                getActivity().finish();
                 /*
                 Intent intent = new Intent(getActivity(), user_map.class);
                 startActivity(intent);

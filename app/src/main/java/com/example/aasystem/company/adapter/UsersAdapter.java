@@ -1,4 +1,4 @@
-package com.example.aasystem.company;
+package com.example.aasystem.company.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.aasystem.FingerPrintModel;
 import com.example.aasystem.R;
+import com.example.aasystem.company.activities.UserRecordActivity;
+
 import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>

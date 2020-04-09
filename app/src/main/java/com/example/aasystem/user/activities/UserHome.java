@@ -1,4 +1,4 @@
-package com.example.aasystem.user;
+package com.example.aasystem.user.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.aasystem.R;
-import com.example.aasystem.user.FragmentHome;
-import com.example.aasystem.user.FragmentRecord;
-import com.example.aasystem.user.FragmentSettings;
+import com.example.aasystem.user.fragment.FragmentHome;
+import com.example.aasystem.user.fragment.FragmentRecord;
+import com.example.aasystem.user.fragment.FragmentSettings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UserHome extends AppCompatActivity

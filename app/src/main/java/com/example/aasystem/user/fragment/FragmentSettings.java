@@ -1,4 +1,4 @@
-package com.example.aasystem.user;
+package com.example.aasystem.user.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;

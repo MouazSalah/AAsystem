@@ -12,12 +12,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.aasystem.auth.user.LoginUser;
+import com.example.aasystem.company.fragment.CompanyHome;
 import com.example.aasystem.user.model.UserCredential;
 import com.example.aasystem.utils.CompanyAcountInfo;
-import com.example.aasystem.company.DomainActivity;
+import com.example.aasystem.company.activities.DomainActivity;
 import com.example.aasystem.R;
-import com.example.aasystem.auth.RegisterSuccess;
 import com.example.aasystem.utils.SharedPrefMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -71,6 +70,8 @@ public class CompanyRegister extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(CompanyRegister.this, DomainActivity.class);
                 startActivity(i);
+                finish();
+
             }
         });
 
@@ -81,6 +82,8 @@ public class CompanyRegister extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(CompanyRegister.this, LoginCompany.class);
                 startActivity(i);
+                finish();
+
             }
         });
 
@@ -152,7 +155,8 @@ public class CompanyRegister extends AppCompatActivity {
                                             SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(CompanyRegister.this);
                                             UserCredential userCredential = new UserCredential(mEmail.getText().toString(), mPassword.getText().toString(), "company");
                                             sharedPrefMethods.saveUserData(userCredential);
-                                            startActivity(new Intent(CompanyRegister.this, RegisterSuccess.class));
+                                            startActivity(new Intent(CompanyRegister.this, CompanyHome.class));
+                                            finish();
 
                                         } else {
 
@@ -184,8 +188,8 @@ public class CompanyRegister extends AppCompatActivity {
             {
                 Intent intent = new Intent(getApplicationContext(), LoginCompany.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
-
 }

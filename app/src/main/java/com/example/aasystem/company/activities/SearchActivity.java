@@ -1,4 +1,4 @@
-package com.example.aasystem.company;
+package com.example.aasystem.company.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 import com.example.aasystem.FingerPrintModel;
 import com.example.aasystem.R;
+import com.example.aasystem.company.adapter.UsersAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

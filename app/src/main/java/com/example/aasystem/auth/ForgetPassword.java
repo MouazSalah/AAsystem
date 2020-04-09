@@ -47,7 +47,8 @@ public class ForgetPassword extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 Toast.makeText(ForgetPassword.this, "Password reset email sent!", Toast.LENGTH_SHORT).show();
                                 finish();
-                                startActivity(new Intent(ForgetPassword.this, MainActivity.class));
+                                startActivity(new Intent(ForgetPassword.this, SplashActivity.class));
+                                finish();
                             }
                             else{
                                 Toast.makeText(ForgetPassword.this, "Error in sending password reset email", Toast.LENGTH_SHORT).show();

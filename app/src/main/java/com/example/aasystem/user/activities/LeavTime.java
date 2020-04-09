@@ -1,4 +1,4 @@
-package com.example.aasystem.user;
+package com.example.aasystem.user.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,7 +33,8 @@ public class LeavTime extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_success);
+        // setContentView(R.layout.user_profile);
+      /*  setContentView(R.layout.register_success);
 
 
         DateFormat formatt = new SimpleDateFormat("yyyy/MM/dd");
@@ -71,5 +72,7 @@ public class LeavTime extends AppCompatActivity {
         alM.setRepeating(AlarmManager.RTC_WAKEUP,out.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pi);
 
 
+    }*/
     }
+
 }

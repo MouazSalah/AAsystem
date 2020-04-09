@@ -12,7 +12,7 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
-import com.example.aasystem.company.MapsActivity;
+import com.example.aasystem.company.activities.MapsActivity;
 
 public class notyLeave extends BroadcastReceiver {
 

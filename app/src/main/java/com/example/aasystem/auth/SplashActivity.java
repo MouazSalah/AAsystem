@@ -5,16 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
 
 import com.example.aasystem.R;
-import com.example.aasystem.auth.user.LoginUser;
-import com.example.aasystem.company.CompanyHome;
-import com.example.aasystem.user.UserNav;
-import com.example.aasystem.user.model.UserCredential;
-import com.example.aasystem.utils.SharedPrefMethods;
 
-public class MainActivity extends AppCompatActivity
+public class SplashActivity extends AppCompatActivity
 {
     private static int SPLASH_TIME_OUT=4000;
     @Override
@@ -28,7 +22,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run()
             {
-                Intent homeIntent= new Intent(MainActivity.this, AuthActivity.class);
+                Intent homeIntent= new Intent(SplashActivity.this, AuthActivity.class);
                 startActivity(homeIntent);
                 finish();
                /* SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(MainActivity.this);

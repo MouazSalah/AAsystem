@@ -14,9 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aasystem.R;
-import com.example.aasystem.user.UserAcountInfo;
-import com.example.aasystem.user.FingerPrintActivity;
-import com.example.aasystem.user.UserNav;
+import com.example.aasystem.auth.fingerprintActivity;
+import com.example.aasystem.user.activities.FingerPrintActivity;
+import com.example.aasystem.user.model.UserAcountInfo;
+import com.example.aasystem.user.fragment.UserNav;
 import com.example.aasystem.user.model.UserCredential;
 import com.example.aasystem.utils.SharedPrefMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,7 +27,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.auth.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -79,8 +79,9 @@ public class UserRegister extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent i = new Intent(UserRegister.this, FingerPrintActivity.class);
+                Intent i = new Intent(UserRegister.this, fingerprintActivity.class);
                 startActivity(i);
+                finish();
             }
         });
         /**Go to login page*/
@@ -92,6 +93,7 @@ public class UserRegister extends AppCompatActivity {
             {
                 Intent i= new Intent(UserRegister.this, LoginUser.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -175,13 +177,13 @@ public class UserRegister extends AppCompatActivity {
                                     {
                                         if(task.isSuccessful())
                                         {
-
                                             SharedPrefMethods sharedPrefMethods = new SharedPrefMethods(UserRegister.this);
                                             UserCredential userCredential = new UserCredential(email.getText().toString(),
                                                     password.getText().toString(),
                                                     "user");
                                             sharedPrefMethods.saveUserData(userCredential);
                                             startActivity(new Intent(UserRegister.this, UserNav.class));
+                                            finish();
                                             progressDoalog.dismiss();
                                         }
                                         else

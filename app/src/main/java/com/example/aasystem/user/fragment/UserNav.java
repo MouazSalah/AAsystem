@@ -1,4 +1,4 @@
-package com.example.aasystem.user;
+package com.example.aasystem.user.fragment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

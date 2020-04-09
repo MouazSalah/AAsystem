@@ -1,4 +1,4 @@
-package com.example.aasystem.company;
+package com.example.aasystem.company.activities;
 
 import android.os.Bundle;
 import android.view.View;

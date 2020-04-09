@@ -10,10 +10,9 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
-import com.example.aasystem.company.MapsActivity;
+import com.example.aasystem.company.activities.MapsActivity;
 
 public class notification extends BroadcastReceiver {
 

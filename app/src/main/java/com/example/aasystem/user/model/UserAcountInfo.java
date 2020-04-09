@@ -1,4 +1,4 @@
-package com.example.aasystem.user;
+package com.example.aasystem.user.model;
 
 public class UserAcountInfo
 {

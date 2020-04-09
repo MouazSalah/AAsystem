@@ -1,5 +1,5 @@
 
-package com.example.aasystem.user;
+package com.example.aasystem.user.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,9 +12,9 @@ import android.widget.Toast;
 
 import com.example.aasystem.FingerPrintModel;
 import com.example.aasystem.R;
+import com.example.aasystem.user.fragment.UserNav;
 import com.example.aasystem.utils.BiometricCheck;
 import com.example.aasystem.utils.BiometricListener;
-import com.example.aasystem.utils.CheckUs;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,9 +29,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 
-public class FingerPrint extends AppCompatActivity
+public class FingerPrintActivity extends AppCompatActivity
 {
     Button button_authenticate;
     private FirebaseAuth auth;
@@ -88,7 +87,7 @@ public class FingerPrint extends AppCompatActivity
             public void onClick(View v)
             {
                 //perform biometric check
-                new BiometricCheck(FingerPrint.this, listener);
+                new BiometricCheck(FingerPrintActivity.this, listener);
             }
         });
 
@@ -137,9 +136,10 @@ public class FingerPrint extends AppCompatActivity
                             if(task.isSuccessful())
                             {
                                 databaseRef.child("fingerprint").child(userid + "" + keyChild).setValue(fingerPrintModel);
-                                Toast.makeText(FingerPrint.this, "Thanks", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(FingerPrint.this, UserNav.class);
+                                Toast.makeText(FingerPrintActivity.this, "Thanks", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(FingerPrintActivity.this, UserNav.class);
                                 startActivity(i);
+                                finish();
                             }
                         }
                     });
@@ -166,10 +166,11 @@ public class FingerPrint extends AppCompatActivity
                                 databaseRef.child("fingerprint").child(userid + "" + keyChild).child("leave").setValue(time);
                                 databaseRef.child("fingerprint").child(userid + "" + keyChild).child("second_check").setValue("100%");
 
-                                Toast.makeText(FingerPrint.this, "Thanks", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(FingerPrintActivity.this, "Thanks", Toast.LENGTH_SHORT).show();
 
-                                Intent i = new Intent(FingerPrint.this, UserNav.class);
+                                Intent i = new Intent(FingerPrintActivity.this, UserNav.class);
                                 startActivity(i);
+                                finish();
                             }
                         }
                     });
@@ -183,7 +184,7 @@ public class FingerPrint extends AppCompatActivity
         @Override
         public void onSuccess()
         {
-            Toast.makeText(FingerPrint.this, "User authentication successful",Toast.LENGTH_LONG).show();
+            Toast.makeText(FingerPrintActivity.this, "User authentication successful",Toast.LENGTH_LONG).show();
             //turn button text green
             button_authenticate.setBackgroundColor(getResources().getColor(android.R.color.holo_green_dark));
         }

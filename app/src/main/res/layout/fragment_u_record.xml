@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:background="@color/main"
     android:orientation="vertical"
-    tools:context=".auth.MainActivity">
+    tools:context=".auth.SplashActivity">
 
     <LinearLayout
         android:layout_width="280dp"

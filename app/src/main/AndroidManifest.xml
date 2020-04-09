@@ -20,8 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".auth.AuthActivity"></activity>
-        <activity android:name=".company.SearchActivity" />
-        <activity android:name=".company.UserRecordActivity" />
+        <activity android:name=".company.activities.SearchActivity" />
+        <activity android:name=".company.activities.UserRecordActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -35,9 +35,9 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".company.MapsActivity"
+            android:name=".company.activities.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".auth.MainActivity">
+        <activity android:name=".auth.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,20 +45,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".auth.company.CompanyRegister" />
-        <activity android:name=".company.DomainActivity" />
-        <activity android:name=".auth.RegisterSuccess" />
+        <activity android:name=".company.activities.DomainActivity" />
         <activity android:name=".auth.company.LoginCompany" />
         <activity android:name=".auth.user.LoginUser" />
-        <activity android:name=".company.CompanyHome" />
-        <activity android:name=".company.FindByDate" />
-        <activity android:name=".company.FindById" />
+        <activity android:name=".company.fragment.CompanyHome" />
+        <activity android:name=".auth.fingerprintActivity" />
+        <activity android:name=".company.activities.FindByDate" />
+        <activity android:name=".company.activities.FindById" />
         <activity android:name=".auth.ForgetPassword" />
         <activity android:name=".auth.user.UserRegister" />
-        <activity android:name=".company.PendingUsersActivity" />
-        <activity android:name=".user.FingerPrintActivity" />
-        <activity android:name=".user.FingerPrint" />
-        <activity android:name=".user.UserNav" />
+        <activity android:name=".company.activities.PendingUsersActivity" />
+        <activity android:name=".user.activities.FingerPrintActivity" />
+        <activity android:name=".user.fragment.UserNav" />
         <activity android:name=".user_map" />
+
+
+
     </application>
 
 </manifest>

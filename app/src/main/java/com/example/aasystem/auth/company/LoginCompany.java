@@ -6,14 +6,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.aasystem.company.CompanyHome;
+import com.example.aasystem.company.fragment.CompanyHome;
 import com.example.aasystem.auth.ForgetPassword;
 import com.example.aasystem.R;
 import com.example.aasystem.user.model.UserCredential;
@@ -25,8 +24,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class LoginCompany extends AppCompatActivity {
-
+public class LoginCompany extends AppCompatActivity
+{
     EditText etLogGmail,etLoginPassword;
     Session session;
     Button btnLogin;
@@ -36,15 +35,14 @@ public class LoginCompany extends AppCompatActivity {
     FirebaseDatabase mFirebaseDatabase;
     String usrid;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
         //Instantiate firebase
         fAuth = FirebaseAuth.getInstance();
         myRef=FirebaseDatabase.getInstance().getReference("company");
-
-
 
         //Declaring variables
         etLogGmail = findViewById(R.id.etLogGmail);
@@ -58,6 +56,7 @@ public class LoginCompany extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(LoginCompany.this, CompanyRegister.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -67,6 +66,7 @@ public class LoginCompany extends AppCompatActivity {
             public void onClick(View v) {
                 Intent rest = new Intent(LoginCompany.this, ForgetPassword.class);
                 startActivity(rest);
+                finish();
             }
         });
 
@@ -95,6 +95,8 @@ public class LoginCompany extends AppCompatActivity {
                                    UserCredential userCredential = new UserCredential(etLogGmail.getText().toString(), etLoginPassword.getText().toString(), "company");
                                    sharedPrefMethods.saveUserData(userCredential);
                                    startActivity(new Intent(getApplicationContext(), CompanyHome.class));
+                                   finish();
+
                                }
                                else
                                {

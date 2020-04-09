@@ -1,4 +1,4 @@
-package com.example.aasystem;
+package com.example.aasystem.user.model;
 
 public class UserModel
 {

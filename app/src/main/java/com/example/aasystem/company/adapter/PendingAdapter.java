@@ -1,4 +1,4 @@
-package com.example.aasystem.company;
+package com.example.aasystem.company.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.aasystem.R;
+import com.example.aasystem.company.model.PendingUserModel;
+
 import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 

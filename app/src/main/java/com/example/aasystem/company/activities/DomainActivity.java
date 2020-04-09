@@ -1,4 +1,4 @@
-package com.example.aasystem.company;
+package com.example.aasystem.company.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,9 +34,8 @@ public class DomainActivity extends AppCompatActivity {
                 Intent i = new Intent(DomainActivity.this, CompanyRegister.class);
                 i.putExtra("From",From.getText().toString());
                 i.putExtra("To",To.getText().toString());
-
                 startActivity(i);
-
+                finish();
             }
         });
     }
