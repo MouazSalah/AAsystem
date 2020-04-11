@@ -86,6 +86,10 @@ public class FragmentHome extends Fragment
                     secondCheck = model.getSecond_check();
                     checktxt.setText(model.getSecond_check());
                 }
+                else
+                {
+                    userStatus = "absent";
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -94,8 +98,36 @@ public class FragmentHome extends Fragment
         });
 
 
+        status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (userStatus.equals("present"))
+                {
+                    Dialog builder = new Dialog (getContext());
+                    builder.setContentView(R.layout.on_time);
+                    builder.create();
+                    builder.show();
+                }
+                else if (userStatus.equals("late"))
+                {
+                    Dialog builder = new Dialog (getContext());
+                    builder.setContentView(R.layout.ur_late);
+                    builder.create();
+                    builder.show();
+                }
+                else
+                {
+                    Dialog builder = new Dialog (getContext());
+                    builder.setContentView(R.layout.ur_absent);
+                    builder.create();
+                    builder.show();
+                }
+            }
+        });
 
-        ValueEventListener valueEventListener = new ValueEventListener()
+
+
+    /*    ValueEventListener valueEventListener = new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -137,7 +169,7 @@ public class FragmentHome extends Fragment
                         builder.show();
                     }
 
-                  /*  Date time_att = parseDate(attTim);
+                  *//*  Date time_att = parseDate(attTim);
 
                     Date time_from = parseDate(from);
                     Date time_on = parseDate(onTime);
@@ -163,14 +195,14 @@ public class FragmentHome extends Fragment
                         builder.setContentView(R.layout.ur_absent);
                         builder.create();
                         builder.show();
-                    }*/
+                    }*//*
                 }
             });
 
             //--------- for fingerprint button hiding
            // att_time.setText(attTim);
            // checktxt.setText(check);
-         /*   finger.setOnClickListener(new View.OnClickListener ()
+         *//*   finger.setOnClickListener(new View.OnClickListener ()
             {
                 @Override
                 public void onClick(View root)
@@ -196,10 +228,10 @@ public class FragmentHome extends Fragment
                         Toast.makeText(getActivity(), "you didn't attend yet!", Toast.LENGTH_SHORT).show();
                     }
                 }
-            });*/
+            });*//*
 
-           /*  leev =  String.valueOf(dataSnapshot.child("Users").child(userid).child("figerPrint").child(date).child("leaveTime").getValue());
-             lev_time.setText(leev);*/
+           *//*  leev =  String.valueOf(dataSnapshot.child("Users").child(userid).child("figerPrint").child(date).child("leaveTime").getValue());
+             lev_time.setText(leev);*//*
         }
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError)
@@ -208,7 +240,7 @@ public class FragmentHome extends Fragment
         }
     };
 
-        firebase.addListenerForSingleValueEvent(valueEventListener);
+        firebase.addListenerForSingleValueEvent(valueEventListener);*/
 
         Button second = root.findViewById(R.id.second);
         second.setOnClickListener(new View.OnClickListener()
@@ -216,9 +248,6 @@ public class FragmentHome extends Fragment
             @Override
             public void onClick(View v)
             {
-
-
-                String plus = "100%";
                firebase.child("Users").child(userid).child("fingerprint").addValueEventListener(new ValueEventListener() {
                    @Override
                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)

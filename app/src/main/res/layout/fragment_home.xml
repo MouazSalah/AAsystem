@@ -34,9 +34,22 @@
 
     </LinearLayout>
 
-    <RelativeLayout
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/bellbtn"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#20000000"
+        android:src="@drawable/edit_users"/>
+
+   <!-- <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_paddingBottom="20dp"
+        >
 
         <ImageButton
             android:id="@+id/bellbtn"
@@ -60,12 +73,14 @@
             android:clickable="true"
             android:fontFamily="sans-serif-condensed-medium"
             android:padding="8dp"
+            android:visibility="gone"
+            android:layout_margin="20dp"
             android:text="Send Attendance Checking"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="normal" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
 </RelativeLayout>

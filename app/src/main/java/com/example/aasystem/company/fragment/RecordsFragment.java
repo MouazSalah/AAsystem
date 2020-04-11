@@ -36,7 +36,7 @@ public class RecordsFragment extends Fragment {
     DatabaseReference myref;
     RecyclerView recyclerView;
 
-    UsersAdapter usersAdapter;
+    RecordsAdapter usersAdapter;
     List<FingerPrintModel> usersList = new ArrayList<>();
 
     int selectedMonth;
@@ -118,7 +118,7 @@ public class RecordsFragment extends Fragment {
                     usersList.add(userModel);
                 }
 
-                usersAdapter = new UsersAdapter(getActivity(), usersList);
+                usersAdapter = new RecordsAdapter(getActivity(), usersList);
                 recyclerView.setAdapter(usersAdapter);
                 usersAdapter.notifyDataSetChanged();
             }
@@ -148,7 +148,7 @@ public class RecordsFragment extends Fragment {
                         usersList.add(userModel);
                     }
                 }
-                usersAdapter = new UsersAdapter(getActivity(), usersList);
+                usersAdapter = new RecordsAdapter(getActivity(), usersList);
                 recyclerView.setAdapter(usersAdapter);
                 usersAdapter.notifyDataSetChanged();
             }

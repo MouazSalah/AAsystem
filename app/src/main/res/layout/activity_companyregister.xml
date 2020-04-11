@@ -88,6 +88,7 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/btndomain"
                 android:clickable="true"
+                android:visibility="gone"
                 android:drawableLeft="@drawable/ic_marker"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:padding="8dp"

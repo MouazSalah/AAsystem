@@ -166,7 +166,7 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
             }
         });
 
-        notificationbtn = v.findViewById(R.id.notificationbtn);
+       /* notificationbtn = v.findViewById(R.id.notificationbtn);
         notificationbtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -175,7 +175,7 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://console.firebase.google.com/u/2/project/aasystem-f460e/notification"));
                startActivity(i);
             }
-        });
+        });*/
 
         return v;
     }

@@ -136,14 +136,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Add Your Fingerprint" />
+            android:textAllCaps="false"
+            android:text="Confirm Attendance" />
 
         <Button
             android:id="@+id/second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Save the second check" />
+            android:textAllCaps="false"
+            android:text="Confirm Leaving" />
 
             <Button
                 android:id="@+id/A_status"
