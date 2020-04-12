@@ -39,36 +39,6 @@
 
     </LinearLayout>
 
-<!--    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/main">
-
-
-        <TextView
-            android:id="@+id/aasystem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="45dp"
-            android:layout_marginRight="20dp"
-            android:drawablePadding="10dp"
-            android:fontFamily="@font/spinnaker"
-            android:text="Create Company Account"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="121dp"
-            android:layout_height="155dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bc"
-            android:src="@drawable/ic_handup">
-
-        </ImageView>
-    </RelativeLayout>-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -88,7 +58,6 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/btndomain"
                 android:clickable="true"
-                android:visibility="gone"
                 android:drawableLeft="@drawable/ic_marker"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:padding="8dp"

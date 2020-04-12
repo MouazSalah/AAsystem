@@ -37,9 +37,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class HomeFragment extends Fragment implements UsersAdapter.ItemClickListener
 {
-    ImageButton prendingbtn;
+    CircleImageView prendingbtn;
     Button notificationbtn;
     private FirebaseAuth auth;
     private FirebaseUser muser;

@@ -54,8 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="7dp"
-        android:background="@drawable/edittextt"
-        android:text=" at 7:33 am"
+        android:text="-"
         android:textColor="@color/dark_gray"
         android:textSize="15sp"
         android:textStyle="bold" />
@@ -84,8 +83,7 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:padding="7dp"
-        android:background="@drawable/edittextt"
-        android:text=" at 3:00 pm"
+        android:text="-"
         android:textColor="@color/dark_gray"
         android:textSize="15sp"
         android:textStyle="bold" />

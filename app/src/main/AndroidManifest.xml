@@ -49,7 +49,7 @@
         <activity android:name=".auth.company.LoginCompany" />
         <activity android:name=".auth.user.LoginUser" />
         <activity android:name=".company.fragment.CompanyHome" />
-        <activity android:name=".auth.fingerprintActivity" />
+        <activity android:name=".auth.CheckFingerPrintActivity" />
         <activity android:name=".company.activities.FindByDate" />
         <activity android:name=".company.activities.FindById" />
         <activity android:name=".auth.ForgetPassword" />

@@ -14,8 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aasystem.R;
-import com.example.aasystem.auth.fingerprintActivity;
-import com.example.aasystem.user.activities.FingerPrintActivity;
+import com.example.aasystem.auth.CheckFingerPrintActivity;
 import com.example.aasystem.user.model.UserAcountInfo;
 import com.example.aasystem.user.fragment.UserNav;
 import com.example.aasystem.user.model.UserCredential;
@@ -79,7 +78,7 @@ public class UserRegister extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent i = new Intent(UserRegister.this, fingerprintActivity.class);
+                Intent i = new Intent(UserRegister.this, CheckFingerPrintActivity.class);
                 startActivity(i);
                 finish();
             }
