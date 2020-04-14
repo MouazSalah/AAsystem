@@ -118,9 +118,9 @@ public class FingerPrintActivity extends AppCompatActivity
                     int minutes = calendar.get(Calendar.MINUTE);
 
                     if (checkNumber.equals("first")) {
-                        if (hour24hrs < 9 && hour24hrs > 8) {
+                        if (hour24hrs < 15 && hour24hrs > 14) {
                             status = "present";
-                        } else if (hour24hrs > 15) {
+                        } else if (hour24hrs > 21) {
                             status = "absent";
                         } else {
                             status = "late";
@@ -146,9 +146,9 @@ public class FingerPrintActivity extends AppCompatActivity
                         });
                     }
                     if (checkNumber.equals("second")) {
-                        if (hour24hrs < 15) {
+                        if (hour24hrs < 21) {
                             status = "late";
-                        } else if (hour24hrs > 16) {
+                        } else if (hour24hrs > 21) {
                             status = "present";
                         } else {
                             status = "absent";
