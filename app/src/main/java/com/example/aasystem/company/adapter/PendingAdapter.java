@@ -73,7 +73,7 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.ViewHold
 
             @Override
             public void onClick(View v) {
-                clickListener.onItemClick(getAdapterPosition(), v);
+                clickListener.onItemClick(usersList.get(getAdapterPosition()));
             }
 
     }
@@ -83,7 +83,7 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.ViewHold
     }
 
     public interface ClickListener {
-        void onItemClick(int position, View v);
+        void onItemClick(PendingUserModel model);
     }
 
     PendingUserModel getItem(int id)

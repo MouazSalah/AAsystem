@@ -19,9 +19,9 @@
         android:roundIcon="@mipmap/ic_logo1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".auth.AuthActivity"></activity>
+        <activity android:name=".company.activities.UserRecordsActivity"></activity>
+        <activity android:name=".auth.AuthActivity" />
         <activity android:name=".company.activities.SearchActivity" />
-        <activity android:name=".company.activities.UserRecordActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -58,9 +58,6 @@
         <activity android:name=".user.activities.FingerPrintActivity" />
         <activity android:name=".user.fragment.UserNav" />
         <activity android:name=".user_map" />
-
-
-
     </application>
 
 </manifest>

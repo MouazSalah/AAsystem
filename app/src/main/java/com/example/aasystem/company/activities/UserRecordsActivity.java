@@ -1,14 +1,12 @@
-package com.example.aasystem.company.fragment;
-
-
-import android.os.Bundle;
+package com.example.aasystem.company.activities;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +17,8 @@ import android.widget.Spinner;
 import com.example.aasystem.FingerPrintModel;
 import com.example.aasystem.R;
 import com.example.aasystem.company.adapter.UsersAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,41 +28,57 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class RecordsFragment extends Fragment
+public class UserRecordsActivity extends AppCompatActivity
 {
     DatabaseReference myref;
     RecyclerView recyclerView;
-
-    RecordsAdapter usersAdapter;
+    UsersAdapter usersAdapter;
     List<FingerPrintModel> usersList = new ArrayList<>();
-
     int selectedMonth;
     Spinner monthSpinner;
     List<Integer> monthList;
-
-    public RecordsFragment() {
-        // Required empty public constructor
-    }
+    private FirebaseAuth auth;
+    private FirebaseUser muser;
+    String userId;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    protected void onCreate(Bundle savedInstanceState)
     {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_user_records);
 
-        View v = inflater.inflate(R.layout.fragment_records, container, false);
+        myref = FirebaseDatabase.getInstance().getReference("company").child("Users");
 
-        myref = FirebaseDatabase.getInstance().getReference("company").child("fingerprint");
+        userId = getIntent().getStringExtra("user_id");
 
-        recyclerView = (RecyclerView) v.findViewById(R.id.search_recyclerview);
+        recyclerView = (RecyclerView) findViewById(R.id.pendinguserrecords_recyclerview);
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        getAllUsers();
+        myref.child(userId).child("fingerprint").addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    FingerPrintModel userModel = snapshot.getValue(FingerPrintModel.class);
+                    usersList.add(userModel);
+                }
+
+                usersAdapter = new UsersAdapter(getApplicationContext(), usersList);
+                recyclerView.setAdapter(usersAdapter);
+                usersAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         monthList = new ArrayList<Integer>();
         monthList.add(1);
@@ -79,8 +95,8 @@ public class RecordsFragment extends Fragment
         monthList.add(12);
 
 
-        monthSpinner = (Spinner) v.findViewById(R.id.month_spinner);
-        ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, monthList);
+        monthSpinner = (Spinner) findViewById(R.id.month_spinner);
+        ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, monthList);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         monthSpinner.setAdapter(dataAdapter);
 
@@ -90,7 +106,7 @@ public class RecordsFragment extends Fragment
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l)
             {
                 selectedMonth = (int) monthSpinner.getItemAtPosition(pos);
-                getUsers();
+                getDataByMonth();
             }
 
             @Override
@@ -99,40 +115,13 @@ public class RecordsFragment extends Fragment
 
             }
         });
-
-        return  v;
     }
 
-    private void getAllUsers()
-    {
-        myref.addValueEventListener(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren())
-                {
-                    FingerPrintModel userModel = snapshot.getValue(FingerPrintModel.class);
-                    usersList.add(userModel);
-                }
-
-                usersAdapter = new RecordsAdapter(getActivity(), usersList);
-                recyclerView.setAdapter(usersAdapter);
-                usersAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void getUsers()
+    private void getDataByMonth()
     {
         usersList.clear();
 
-        myref.addValueEventListener(new ValueEventListener()
+        myref.child(userId).child("fingerprint").addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -146,17 +135,15 @@ public class RecordsFragment extends Fragment
                         usersList.add(userModel);
                     }
                 }
-                usersAdapter = new RecordsAdapter(getActivity(), usersList);
+                usersAdapter = new UsersAdapter(getApplicationContext(), usersList);
                 recyclerView.setAdapter(usersAdapter);
                 usersAdapter.notifyDataSetChanged();
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
 
             }
         });
     }
-
-
 }

@@ -18,6 +18,7 @@ import com.example.aasystem.FingerPrintModel;
 import com.example.aasystem.R;
 import com.example.aasystem.company.adapter.PendingAdapter;
 import com.example.aasystem.company.fragment.CompanyHome;
+import com.example.aasystem.company.fragment.RecordsFragment;
 import com.example.aasystem.company.model.PendingUserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -51,7 +52,6 @@ public class PendingUsersActivity extends AppCompatActivity implements PendingAd
 
         recyclerView = (RecyclerView) findViewById(R.id.pendingusers_recyclerview);
 
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -73,16 +73,14 @@ public class PendingUsersActivity extends AppCompatActivity implements PendingAd
 
                     Log.d("lognotes : email", pendingUserModel.getEmail());
                 }
-                pendingAdapter = new PendingAdapter(PendingUsersActivity.this, pendingList,
-                        new PendingAdapter.ClickListener() {
+                pendingAdapter = new PendingAdapter(PendingUsersActivity.this, pendingList, new PendingAdapter.ClickListener() {
                     @Override
-                    public void onItemClick(int position, View v)
+                    public void onItemClick(PendingUserModel model)
                     {
-                        currentModel = pendingList.get(position);
-                        Log.d("lognotes", currentModel.getEmail());
-                        Log.d("lognotes", currentModel.getPassword());
-                        Log.d("lognotes", currentModel.getKey());
-                        showAlertDialog();
+                        Log.d("AaSyStem", "key / " + model.getKey());
+                        Toast.makeText(getApplicationContext(), "hello", Toast.LENGTH_SHORT).show();
+
+                        showDialog(model);
                     }
                 });
                 recyclerView.setAdapter(pendingAdapter);
@@ -96,13 +94,32 @@ public class PendingUsersActivity extends AppCompatActivity implements PendingAd
         });
     }
 
-    @Override
-    public void onItemClick(int position, View v)
+    private void showDialog(final PendingUserModel model)
     {
-        Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+        String[] dialogLanguages = {"Show Records", "Delete"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(PendingUsersActivity.this);
+        builder.setItems(dialogLanguages, new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                if (which == 0)
+                {
+                    Intent intent = new Intent(getApplicationContext(), UserRecordsActivity.class);
+                    intent.putExtra("user_id", model.getKey());
+                    startActivity(intent);
+                }
+                if (which == 1)
+                {
+                    showAlertDialog(model);
+                }
+            }
+        });
+        builder.show();
     }
 
-    public void showAlertDialog()
+    public void showAlertDialog(final PendingUserModel model)
     {
         new AlertDialog.Builder(this).setTitle("Warning")
                 .setMessage("Are you want to Delete this User ?")
@@ -110,8 +127,8 @@ public class PendingUsersActivity extends AppCompatActivity implements PendingAd
                 {
                     public void onClick(DialogInterface dialog, int which)
                     {
-
-                        deleteUserData();
+                        Log.d("AaSyStem", "" + model.getKey());
+                        deleteUserData(model);
 
                     }
                 })
@@ -120,48 +137,77 @@ public class PendingUsersActivity extends AppCompatActivity implements PendingAd
             .show();
     }
 
-    private void deleteUserData()
+    private void deleteUserData(final PendingUserModel model)
     {
         final DatabaseReference myref = FirebaseDatabase.getInstance().getReference("company");
-        myref.child("Users").child(key).removeValue();
 
-        myref.child("fingerprint").addValueEventListener(new ValueEventListener()
-        {
+        final String removedId = model.getKey();
+        myref.child("Users").child(removedId).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                for (DataSnapshot shot : dataSnapshot.getChildren())
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful())
                 {
-                    FingerPrintModel model = shot.getValue(FingerPrintModel.class);
-                    if (model.getId().equals(key))
-                    {
-                       String ref = shot.getRef().getKey();
-                       myref.child("fingerprint").child(ref).removeValue();
-                    }
+                    deleteUserFingerprint(removedId);
+                    //Toast.makeText(PendingUsersActivity.this, "deleted", Toast.LENGTH_SHORT).show();
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
-
+                else
+                {
+                   // Toast.makeText(PendingUsersActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         pendingAdapter.notifyDataSetChanged();
-
-
 
         Intent intent = new Intent(PendingUsersActivity.this, PendingUsersActivity.class );
         startActivity(intent);
         finish();
     }
 
+    private void deleteUserFingerprint(final String userId)
+    {
+        final DatabaseReference myref = FirebaseDatabase.getInstance().getReference("company");
+        myref.child("fingerprint").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    if (snapshot.getRef().child("id").equals(userId))
+                    {
+                        myref.child("fingerprint").child(String.valueOf(snapshot.getRef())).removeValue()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task)
+                            {
+                                if (task.isSuccessful())
+                                {
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+
+            }
+        });
+    }
+
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         super.onBackPressed();
         Intent intent = new Intent(PendingUsersActivity.this, CompanyHome.class );
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onItemClick(PendingUserModel model)
+    {
+       // Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
     }
 }

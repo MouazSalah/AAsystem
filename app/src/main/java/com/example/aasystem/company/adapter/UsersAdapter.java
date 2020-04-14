@@ -10,9 +10,11 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.aasystem.FingerPrintModel;
 import com.example.aasystem.R;
-import com.example.aasystem.company.activities.UserRecordActivity;
+import com.example.aasystem.company.activities.UserRecordsActivity;
 
 import java.util.List;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>
 {
@@ -58,8 +60,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>
         holder.userLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent  = new Intent(context, UserRecordActivity.class);
+                Intent intent  = new Intent(context, UserRecordsActivity.class);
                 intent.putExtra("user_id", model.getId());
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });

@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aasystem.FingerPrintModel;
 import com.example.aasystem.R;
-import com.example.aasystem.company.activities.UserRecordActivity;
-import com.example.aasystem.company.adapter.UsersAdapter;
+import com.example.aasystem.company.activities.UserRecordsActivity;
 
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.ViewHold
         holder.userLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent  = new Intent(context, UserRecordActivity.class);
+                Intent intent  = new Intent(context, UserRecordsActivity.class);
                 intent.putExtra("user_id", model.getId());
                 context.startActivity(intent);
             }

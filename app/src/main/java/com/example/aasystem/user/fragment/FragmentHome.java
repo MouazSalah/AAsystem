@@ -256,7 +256,7 @@ public class FragmentHome extends Fragment
                        {
                           Intent intent = new Intent(getActivity(), FingerPrintActivity.class);
                           intent.putExtra("check", "second");
-                          startActivity(intent);
+                           startActivity(intent);
                            getActivity().finish();
                        }
                        else

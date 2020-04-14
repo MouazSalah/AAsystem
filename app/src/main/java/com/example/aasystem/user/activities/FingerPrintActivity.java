@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.aasystem.FingerPrintModel;
 import com.example.aasystem.R;
+import com.example.aasystem.user.fragment.FragmentHome;
 import com.example.aasystem.user.fragment.UserNav;
 import com.example.aasystem.utils.BiometricCheck;
 import com.example.aasystem.utils.BiometricListener;
@@ -42,6 +43,8 @@ public class FingerPrintActivity extends AppCompatActivity
 
     FingerPrintModel fingerPrintModel;
     String status;
+
+    boolean isChecked = false;
 
     String checkNumber;
     String date;
@@ -97,83 +100,77 @@ public class FingerPrintActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                DateFormat formatt = new SimpleDateFormat("yyyy/MM/dd");
-                long de = System.currentTimeMillis();
-                final String date = formatt.format(new Date(de));
+                if (isChecked == false) {
+                    Toast.makeText(FingerPrintActivity.this, "You must take fingerprint first", Toast.LENGTH_SHORT).show();
+                } else {
 
-                Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-                final String time = format.format(calendar.getTime());
+                    DateFormat formatt = new SimpleDateFormat("yyyy/MM/dd");
+                    long de = System.currentTimeMillis();
+                    final String date = formatt.format(new Date(de));
 
-                final String keyChild = year + "" + month + "" + day;
+                    Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+                    final String time = format.format(calendar.getTime());
 
-                int hour24hrs = calendar.get(Calendar.HOUR_OF_DAY);
-                int minutes = calendar.get(Calendar.MINUTE);
+                    final String keyChild = year + "" + month + "" + day;
 
+                    int hour24hrs = calendar.get(Calendar.HOUR_OF_DAY);
+                    int minutes = calendar.get(Calendar.MINUTE);
 
-                if (checkNumber.equals("first"))
-                {
-                    if (hour24hrs < 9)
-                    {
-                        status = "present";
-                    }
-                    else
-                    {
-                        status = "late";
-                    }
-                     fingerPrintModel = new FingerPrintModel(
-                            date, userid, name, time,
-                            "doesn't leave yet",
-                            "100%",
-                            "50%",
-                            status,
-                            year, month, day);
-                    databaseRef.child("Users").child(userid).child("fingerprint").child(keyChild).setValue(fingerPrintModel).addOnCompleteListener(new OnCompleteListener<Void>()
-                    {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task)
-                        {
-                            if(task.isSuccessful())
-                            {
-                                databaseRef.child("fingerprint").child(userid + "" + keyChild).setValue(fingerPrintModel);
-                                Toast.makeText(FingerPrintActivity.this, "Thanks", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(FingerPrintActivity.this, UserNav.class);
-                                startActivity(i);
-                                finish();
-                            }
+                    if (checkNumber.equals("first")) {
+                        if (hour24hrs < 9 && hour24hrs > 8) {
+                            status = "present";
+                        } else if (hour24hrs > 15) {
+                            status = "absent";
+                        } else {
+                            status = "late";
                         }
-                    });
-                }
-                if (checkNumber.equals("second"))
-                {
-                    if (hour24hrs < 15)
-                    {
-                        status = "late";
-                    }
-                    else
-                    {
-                        status = "present";
-                    }
-
-                    databaseRef.child("Users").child(userid).child("fingerprint").child(keyChild).child("leave").setValue(time);
-                    databaseRef.child("Users").child(userid).child("fingerprint").child(keyChild).child("second_check").setValue("100%").addOnCompleteListener(new OnCompleteListener<Void>()
-                    {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task)
-                        {
-                            if(task.isSuccessful())
-                            {
-                                databaseRef.child("fingerprint").child(userid + "" + keyChild).child("leave").setValue(time);
-                                databaseRef.child("fingerprint").child(userid + "" + keyChild).child("second_check").setValue("100%");
-
-                                Toast.makeText(FingerPrintActivity.this, "Thanks", Toast.LENGTH_SHORT).show();
-
-                                Intent i = new Intent(FingerPrintActivity.this, UserNav.class);
-                                startActivity(i);
-                                finish();
+                        fingerPrintModel = new FingerPrintModel(
+                                date, userid, name, time,
+                                "doesn't leave yet",
+                                "100%",
+                                "50%",
+                                status,
+                                year, month, day);
+                        databaseRef.child("Users").child(userid).child("fingerprint").child(keyChild).setValue(fingerPrintModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    databaseRef.child("fingerprint").child(userid + "" + keyChild).setValue(fingerPrintModel);
+                                    Toast.makeText(FingerPrintActivity.this, "Thanks", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(FingerPrintActivity.this, UserNav.class);
+                                    startActivity(i);
+                                    finish();
+                                }
                             }
+                        });
+                    }
+                    if (checkNumber.equals("second")) {
+                        if (hour24hrs < 15) {
+                            status = "late";
+                        } else if (hour24hrs > 16) {
+                            status = "present";
+                        } else {
+                            status = "absent";
                         }
-                    });
+
+                        databaseRef.child("Users").child(userid).child("fingerprint").child(keyChild).child("leave").setValue(time);
+                        databaseRef.child("Users").child(userid).child("fingerprint").child(keyChild).child("second_check").setValue("100%").addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    databaseRef.child("fingerprint").child(userid + "" + keyChild).child("leave").setValue(time);
+                                    databaseRef.child("fingerprint").child(userid + "" + keyChild).child("second_check").setValue("100%");
+
+                                    Toast.makeText(FingerPrintActivity.this, "Thanks", Toast.LENGTH_SHORT).show();
+
+                                    Intent i = new Intent(FingerPrintActivity.this, UserNav.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+                            }
+                        });
+                    }
                 }
             }
         });
@@ -184,6 +181,7 @@ public class FingerPrintActivity extends AppCompatActivity
         @Override
         public void onSuccess()
         {
+            isChecked = true;
             Toast.makeText(FingerPrintActivity.this, "User authentication successful",Toast.LENGTH_LONG).show();
             //turn button text green
             button_authenticate.setBackgroundColor(getResources().getColor(android.R.color.holo_green_dark));

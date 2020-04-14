@@ -10,16 +10,13 @@ import android.view.MenuItem;
 import com.example.aasystem.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class UserNav extends AppCompatActivity {
-
-
-
+public class UserNav extends AppCompatActivity
+{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
-
-
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navagation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);

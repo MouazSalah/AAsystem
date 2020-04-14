@@ -108,7 +108,7 @@ public class HomeFragment extends Fragment implements UsersAdapter.ItemClickList
                        usersList.add(userModel);
                    }
                }
-               usersAdapter = new UsersAdapter(getActivity(), usersList);
+               usersAdapter = new UsersAdapter(getActivity().getApplicationContext(), usersList);
                recyclerView.setAdapter(usersAdapter);
                usersAdapter.notifyDataSetChanged();
            }
